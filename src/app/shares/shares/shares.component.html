@@ -1,0 +1,38 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="shares">
+  <div class="shares-header">
+    <div class="shares-header__breadcrumbs">
+      <a [routerLink]="['/'] | localize" class="shares-header__breadcrumbs-item">{{ 'home.name' | translate}}</a>
+      <a [routerLink]="['/akcii'] | localize" class="shares-header__breadcrumbs-item">{{ 'shares.name' | translate}}</a>
+    </div>
+    <h1 class="shares-header__h2">{{ 'shares.name' | translate}}</h1>
+
+  </div>
+  <div class="shares-container">
+    <div *ngIf="notTypicalShare" class="shares-item"
+    [ngStyle]="{'background-image': (notTypicalShare.thumbnailImageUrl ? 'url(' + notTypicalShare.thumbnailImageUrl + ')' : '') }">
+      <div class="shares-item__header">
+        <span class="item-header__date">{{ notTypicalShare.dateDiapasone }}</span>
+        <h6 class="item-header__h6">{{ notTypicalShare.header }}</h6>
+      </div>
+      <a [routerLink]="['/akcii', 'friend', notTypicalShare.urlName] | localize" class="item-btn">{{'shares.learnMore' | translate }}</a>
+    </div>
+    <div class="shares-item" *ngFor="let share of sharesBlock"
+    [ngStyle]="{'background-image': (share.smallImageUrl ? 'url(' + share.smallImageUrl + ')' : '') }">
+      <div class="shares-item__header">
+        <span class="item-header__date">{{ share.dateDiapasone }}</span>
+        <h6 class="item-header__h6">{{ share.header }}</h6>
+      </div>
+      <a [routerLink]="['/akcii', share.urlName] | localize" class="item-btn">{{'shares.learnMore' | translate}}</a>
+    </div>
+  </div>
+  <!-- <a *ngIf="!nothingToLoad" (click)="loadMoreNews()" class="shares-loader__link"> -->
+  <a *ngIf="!nothingToLoad" (click)="loadMoreNews()" class="shares-loader__link">
+    <img class="shares-loader__icon" src="assets/img/icons/loading-sm.png" alt="load" title="load">
+    <span class="shares-loader__icon-text">{{ 'shares.viewMore' | translate }}</span>
+  </a>
+</div>
+<div class="bottom__lines"></div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

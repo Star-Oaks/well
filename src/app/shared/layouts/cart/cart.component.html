@@ -1,0 +1,114 @@
+<ngx-smart-modal class="modal cart-modal" customClass="nsm-dialog-animation-rtl" #cart identifier="cart"
+  (onClose)="closeCart()">
+  <div class="cart-modal__container">
+    <div class="cart-modal__bg-img" [defaultImage]="'assets/img/default_dark.jpg'"
+      [lazyLoad]="'assets/img/layouts/bg.jpg'">
+      <h5 class="cart-modal__h5">{{ 'cart.krinitsa' | translate }}</h5>
+      <h3 class="cart-modal__h3">{{ 'cart.orderText' | translate }}</h3>
+    </div>
+    <div *ngIf="cartItems.length" class="cart-modal__wrap">
+      <h2 class="cart-modal__h2">{{ 'cart.yourOrder' | translate }}</h2>
+      <div class="cart-modal__wrap-content">
+        <div id="cartModal" #cartModal class="cart-modal__form">
+          <div class="cart-item__container" *ngFor="let item of cartItems; let i=index">
+            <div class="cart-item__width">
+              <div class="cart-item__wrap">
+                <div class="cart-item__img-wrap">
+                  <img class="cart-item__img" [src]="item.productPhoto" alt="order-image">
+                </div>
+                <div class="cart-item__description">
+                  <div class="cart-item__title">
+                    <p>{{item.name}}</p>
+                  </div>
+                  <div class="cart-item__count-button" >
+                    <ng-container *ngIf="!item.isPackaging; else counterCount">
+                        <app-counter class="cart-item__counter" 
+                        (currentValueChange)="getItemCount(i, $event)" (minValueEvent)="showAdditional(i)"
+                        [counterValue]="item.count" [counterRangeMax]="99" [counterRangeMin]="item.minOrderCount || 1">
+                      </app-counter>
+                    </ng-container>
+                    <ng-template #counterCount>           
+                        <app-counter class="cart-item__counter" (minValueEvent)="showAdditional(i)"
+                          (currentValueChange)="getItemCount(i, $event)" [counterValue]="item.count"
+                          [counterRangeMax]="item.itemCount * 100"
+                          [counterRangeMin]="item.itemCount || item.minOrderCount" [counterCount]="item.itemCount">
+                        </app-counter>
+                    </ng-template>
+                    <ng-container [ngSwitch]="item.type">
+                        <span *ngSwitchCase="PRODUCT_TYPES.pack" class="cart-item__additional"
+                          [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                          {{'cart.minOrder' | translate }} {{item.count}}шт (1 упаковка)
+                        </span>
+                        <span *ngSwitchCase="PRODUCT_TYPES.thing" class="cart-item__additional"
+                          [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                          {{'cart.minOrder' | translate }} {{item.count}}уп.
+                        </span>
+                        <span *ngSwitchCase="PRODUCT_TYPES.water" class="cart-item__additional"
+                          [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                          {{'cart.minOrder' | translate }} {{item.count}}бут.
+                        </span>
+                        <span *ngSwitchCase="PRODUCT_TYPES.pc" class="cart-item__additional"
+                          [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                          {{'cart.minOrder' | translate }} {{item.count}}шт.
+                        </span>
+                        <span *ngSwitchDefault class="cart-item__additional"
+                          [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                          {{'cart.minOrder' | translate }} {{item.count}}шт.
+                        </span>
+                      </ng-container>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-item__price-wrap">
+                <span class="cart-item__price">{{item.price * item.count}}</span>
+                <span class="cart-item__currency">{{ 'shop.price' | translate }}</span>
+              </div>
+            </div>
+            <button class="cart-item__delete" style="background-image: url('assets/img/icons/close-sm-icon.png')"
+              (click)="deleteItem(item.urlName)"></button>
+          </div>
+        </div>
+
+        <div class="cart-modal__footer">
+
+          <div class="cart-order__price-wrap">
+
+            <h5 class="cart-order__h5">{{ 'cart.toPay' | translate }}</h5>
+            <div class="cart-order__price">
+              <span class="cart-order__total">{{ totalCartPrice }}</span>
+              <span class="cart-order__currency">{{ 'shop.price' | translate }}</span>
+            </div>
+
+          </div>
+          <span class="cart-order__additional">{{ 'cart.price' | translate}}</span>
+          <button class="cart-modal__submit-btn" type="submit" form="cartModal" gtagEvent trackOn="click" action="click"
+            category="checkout-basket" [params]="{ event_label: 'Оформить заказ (корзина)' }"
+            [routerLink]="['/cart' | localize]" [queryParams]="{'link': 'cart' }" (click)="cart.close()">
+            <span class="cart-modal__btn-text">{{ 'cart.checkout' | translate }}</span>
+          </button>
+          <a class="cart-modal__shopping-btn" (click)="cart.close()">
+            <span class="cart-modal__btn-text">{{ 'cart.continue' | translate }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!cartItems.length" class="cart-empty__wrap">
+      <div class="cart-empty__content">
+
+        <p class="cart-empty__text">
+          {{ 'cart.emptyCart' | translate }}
+        </p>
+        <div class="cart-empty__img-wrap">
+          <img class="cart-empty__img" src="assets/img/icons/shopping-cart.svg">
+        </div>
+
+        <a class="cart-empty__btn cart-modal__shopping-btn" (click)="cart.close()">
+          <span class="cart-empty__btn-text  cart-modal__btn-text">{{ 'cart.continue' | translate }}</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</ngx-smart-modal>

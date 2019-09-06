@@ -1,0 +1,108 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+.sitemap {
+    padding: 6rem 2rem 4rem;
+
+    &__h1 {
+        color: $main-text-1;
+        font-family: $bold;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 6rem;
+        text-transform: uppercase;
+        letter-spacing: 1.75px;
+    }
+
+    &__list {
+        display: flex;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__item {
+        margin-bottom: 2rem;
+    }
+
+    &__link {
+        color: $main-text-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        display: flex;
+        align-items: center;
+        padding: 0.4rem 0;
+    }
+
+    &__link {
+        cursor: pointer;
+        text-decoration: underline;
+
+        &:active {
+            color: $red-1;
+            text-decoration: underline;
+
+        }
+
+        &.head {
+            cursor: default;
+            text-decoration: none;
+            color: $main-text-1;
+        }
+
+        .home {
+            margin-bottom: 4rem;
+        }
+
+        &:only-child {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__sub-link {
+        color: $light-text-1;
+        font-family: $regular;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-left: 1rem;
+        padding: 0.7rem 0rem;
+        display: inline-block;
+        text-decoration: underline;
+
+        &:active {
+            color: $red-1;
+            text-decoration: underline;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .sitemap {
+        padding: 9rem 2.5rem 5rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .sitemap {
+        padding: 9rem 3rem 5rem;
+
+        &__link,
+        &__sub-link {
+            &:hover {
+                color: $red-1;
+                text-decoration: underline;
+            }
+
+            &.head:hover {
+                text-decoration: none;
+                color: $main-text-1;
+            }
+        }
+    }
+}

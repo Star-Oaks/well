@@ -1,0 +1,21 @@
+<div class="delivery" *ngIf="data && load">
+  <div class="delivery__wrap">
+    <div class="lines">
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="delivery__header">
+      <h4 class="delivery__h4">{{ "delivery.name" | translate}}</h4>
+    </div>
+    <div  class="delivery__text-wrap">
+      <div #text id="read-more" [innerHtml]="data" class="delivery__text" >
+      </div>
+      <div class="delivery__read read-more-link">
+        <a readMore [readMore-length]="count" [readMore-element]="text">
+          <span class="delivery__less less">{{ "delivery.less" | translate}}</span>
+          <span class="delivery__more more">{{ "delivery.more" | translate}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

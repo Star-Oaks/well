@@ -1,0 +1,24 @@
+<div class="category"> 
+  <h1 class="category__h1">{{subCategoryName}}</h1>
+</div>
+<div class="filters" *ngIf="filters.length > 0">
+  <ul class="filters__list" *ngFor="let filter of filters">
+    <li class="filters__item " [dropdownToggle]="true" dropdown>
+      <a class="filters__header filters__link" dropdown-open>
+        {{ filter.name }} <i class="filters__arrow"></i>
+      </a>
+      <div class="filters__sub" class="dropdown-menu">
+        <ul dropdown-not-closable-zone  *ngIf="filter.filteringsValues">
+          <li  class="filters__sub-item" *ngFor="let filterValue of filter.filteringsValues">
+            <a class="filters__sub-link">
+              <input class="filters__sub-link-checkBox" [id]="filterValue.id" type="checkbox"
+                [checked]="filterValue.choosen" (change)="changeChecked(filterValue)" />
+              <label [for]="filterValue.id"> {{ filterValue.value }}</label>
+            </a>
+          </li>
+        </ul>
+        <div class="filters__sub-button" (click)="chooseFilterValue(filter.id)">{{ 'shop.filter' | translate}}</div>
+      </div>
+    </li>
+  </ul>
+</div>

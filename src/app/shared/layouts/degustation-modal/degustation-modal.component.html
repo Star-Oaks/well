@@ -1,0 +1,63 @@
+<ngx-smart-modal class="degu" #degustation customClass="nsm-dialog-animation-rtl" identifier="degustation"
+    (onClose)="closeDegustation()">
+    <div class="degu__wrap">
+        <div class="degu__order" *ngIf="degustationState">
+            <a class="degu__order-close" (click)="degustation.close()"></a>
+            <div class="degu__left">
+                <div class="degu__text">
+                    <h3 class="degu__h3">{{'degustationModal.header' | translate}}</h3>
+                    <h5 class="degu__h5">{{'degustationModal.subHeader' | translate}}</h5>
+                </div>
+                <div class="degu__register">
+                    {{'degustationModal.text' | translate}}
+                </div>
+            </div>
+            <div class="degu__right">
+                <form class="degu__form" [formGroup]="form">
+                    <div class="degu__inputs">
+                        <div class="degu__input-wrap">
+                            <div class="degu__input"
+                                [class.error]="form.controls.name.invalid && form.controls.name.touched">
+                                <input formControlName="name" type="text"
+                                    placeholder="{{'degustationModal.placeholderName' | translate}}">
+                            </div>
+                        </div>
+                        <div class="degu__input-wrap">
+                            <div class="degu__input"
+                                [class.error]="form.controls.phone.invalid && form.controls.phone.touched">
+                                <input formControlName="phone" type="text"
+                                    placeholder="{{'degustationModal.placeholderPhone' | translate}}">
+                            </div>
+                        </div>
+                        <div class="degu__input-wrap">
+                            <div class="degu__input"
+                                [class.error]="form.controls.company.invalid && form.controls.company.touched">
+                                <input formControlName="company" type="text"
+                                    placeholder="{{'degustationModal.company' | translate}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="degu__invalid" [@visibilityChanged]="visiblityState">
+                        {{'degustationModal.invalid' | translate}}</div>
+                    <div class="degu__btn" (click)="checkout()">{{'degustationModal.checkout' | translate}}</div>
+                    <div class="degu__auth" *ngIf="!isAuth">
+                        <a class="degu__link" (click)="toAuth()">{{'degustationModal.enter' | translate}}</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="degu__checkout" *ngIf="checkoutState">
+            <a class="degu__checkout-close" (click)="degustation.close()"></a>
+            <div class="degu__checkout-left">
+                <div class="degu__text">
+                    <h3 class="degu__h3">{{'degustationModal.headerSuccess' | translate}}</h3>
+                    <h5 class="degu__h5">{{'degustationModal.subHeaderSuccess' | translate}}</h5>
+                </div>
+                <div class="degu__register">
+                    {{'degustationModal.text' | translate}}
+                </div>
+            </div>
+            <div class="degu__checkout-right"></div>
+        </div>
+    </div>
+</ngx-smart-modal>

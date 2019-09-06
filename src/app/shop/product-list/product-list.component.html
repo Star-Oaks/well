@@ -1,0 +1,21 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="list-container__wrap" *ngIf="products.length">
+  <div class="list-container">
+    <ng-container *ngFor="let item of products">
+      <app-product-item [subCategoryName]="subCategoryName" [product]="item" class="list"></app-product-item>
+    </ng-container>
+  </div>
+  <div class="list-container__more" *ngIf="!endList">
+    <div class="list-container__more-block" (click)="loadMore()">
+      <img src="/assets/img/shop/ic_loading.png" alt="load" title="load" />
+      <span>{{ 'shop.viewMore' | translate }}</span>
+    </div>
+  </div>
+</div>
+<div class="list-container__wrap" *ngIf="!products.length">
+  <div class="list-container__empty">
+    <p class="list-container__empty-text">
+      {{ 'shop.empty' | translate}}
+    </p>
+  </div>
+</div>

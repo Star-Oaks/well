@@ -1,0 +1,326 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+.share {
+    padding-top: 6rem;
+    .invalid-text {
+        color: $red-1;
+        padding-left: 3rem;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 2.4rem;
+        letter-spacing: 2.4px;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+    }
+    .text-valid {
+        padding-left: 3rem;
+        padding-top: 6rem;
+    }
+    &-header {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        &__breadcrumbs {
+            display: none;
+            app-text-ellipsis {
+                display: inline-block;
+                color: $blue-text-1;
+                font-family: $regular;
+                font-size: 1rem;
+                font-weight: 700;
+                letter-spacing: 2px;
+            }
+            a+a {
+                &::before {
+                    content: "/\00a0";
+                    display: inline-block;
+                    padding-left: 0.5rem;
+                    color: $blue-text-1;
+                }
+            }
+        }
+        &__breadcrumbs,
+        &__breadcrumbs * {
+            color: $blue-text-1;
+            font-family: $regular;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        &__h2 {
+            text-transform: uppercase;
+            color: $dark-blue-text-1;
+            font-family: $bold;
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 2.4rem;
+            letter-spacing: 2.4px;
+            padding-top: 3.5rem;
+            padding-bottom: 1.5rem;
+        }
+        &__date {
+            padding: 0;
+        }
+        &__date,
+        &__date * {
+            color: $red-1;
+            font-family: $regular;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+    }
+    &-description {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 1rem;
+        .text-container-light {
+            font-family: $regular;
+        }
+        &__img {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: 84.375vw;
+            position: relative;
+            &::before {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-color: $under-mask;
+                background-image: $img-mask;
+                opacity: 0.4;
+            }
+        }
+        &__header {
+            padding-top: 2.3rem;
+            padding-bottom: 1rem;
+        }
+        &__header,
+        &__header * {
+            color: $main-text-1;
+            font-family: $regular;
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 2.5rem;
+        }
+        &__text {
+            & * {
+                padding-bottom: 2.3rem;
+            }
+            &::last-child {
+                padding-bottom: 0;
+            }
+        }
+    }
+    &-form {
+        &__row {
+            display: flex;
+            flex-wrap: wrap;
+            padding-top: 1.75rem;
+            padding-bottom: 0;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        &__header {
+            width: 100%;
+            padding-bottom: 1.3rem;
+            text-align: center;
+        }
+        &__header,
+        &__header * {
+            font-family: $bold;
+            color: $dark-blue-text-1;
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2.4px;
+        }
+        &__input-wrap {
+            padding-bottom: 1.1rem;
+            width: 100%;
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+        &__input {
+            width: 100%;
+            box-shadow: $input-shadow-006;
+            border-radius: 22px;
+            background-color: #fff;
+            height: 4.4rem;
+            border: none;
+            padding: 1.7rem 3rem;
+            &.ng-invalid.ng-touched {
+                box-shadow: 0 0 1px 1px rgb(201, 48, 52);
+            }
+            &::placeholder {
+                color: $lighten-text-1;
+                font-family: $regular;
+                font-size: 1.2rem;
+                font-weight: 300;
+                letter-spacing: 0.6px;
+            }
+        }
+        &__add-wrap {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            border: none;
+            background-color: $white-1;
+            margin: 0 auto;
+            padding-top: 2rem;
+            padding-bottom: 0.8rem;
+        }
+        &__add-icon {
+            width: 4.4rem;
+            height: 4.4rem;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: $red-1;
+            border-radius: 50%;
+            box-shadow: $button-shadow-018;
+        }
+        &__add-text {
+            display: flex;
+            color: $lighten-text-1;
+            font-family: $regular;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.6px;
+            margin-left: 1.5rem;
+        }
+        &__submit-wrap {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 1rem;
+        }
+        &__submit-button {
+            height: 4.4rem;
+            width: 28rem;
+            border-color: transparent;
+            border-radius: 22px;
+            background-color: $red-1;
+            font-family: $regular;
+            box-shadow: $button-shadow-018;
+            color: $white-1;
+        }
+    }
+    .contain-filds {
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 0.5rem;
+        padding-bottom: 1rem; // padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .share {
+        padding-top: 9.3rem;
+        border-bottom: 1px solid $border-color-035;
+        .contain-filds {
+            padding-top: 0;
+        }
+        &-header {
+            padding-left: 2.4rem;
+            padding-right: 2.4rem;
+            &__breadcrumbs {
+                display: flex;
+                padding-top: 3rem;
+            }
+            &__h2 {
+                padding-top: 3.2rem;
+            }
+        }
+        &-description {
+            padding-left: 2.4rem;
+            padding-right: 2.4rem;
+            padding-bottom: 2rem;
+            &__img {
+                height: 41.66vw;
+            }
+            &__header {
+                padding-bottom: 3rem;
+            }
+        }
+        &-form {
+            &__header {
+                text-align: left;
+                padding-bottom: 2.5rem;
+            }
+            &__row {
+                padding: 1rem 2.4rem 0 2.4rem;
+            }
+            &__input-wrap {
+                width: 26.2rem;
+                padding-bottom: 0;
+                padding-right: 1.1rem;
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+            &__add-wrap {
+                padding-top: 0;
+                padding-bottom: 0;
+                margin: 0 auto;
+            }
+            &__submit-wrap {
+                justify-content: flex-start;
+                padding-left: 2.4rem;
+                padding-right: 2.4rem;
+                padding-bottom: 5rem;
+            }
+            &__submit-button {
+                width: 26.2rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .share {
+        padding-top: 9.7rem;
+        max-width: 97rem;
+        &-header {
+            padding-left: 3rem;
+            &__h2 {
+                padding-top: 4rem;
+            }
+            &__date {
+                padding-bottom: 3rem;
+            }
+        }
+        &-description {
+            padding-right: 0;
+            padding-left: 3rem;
+            &__img {
+                height: 22.22vw;
+            }
+            &__header {
+                padding-top: 4.5rem;
+            }
+        }
+        &-form {
+            &__row {
+                padding: 3rem 3rem 0.5rem;
+            }
+            &__submit-wrap {
+                padding-bottom: 7rem;
+                padding-top: 0;
+            }
+            &__input-wrap {
+                padding-right: 1.8rem;
+            }
+            &__add-wrap {
+                margin: 0;
+                margin-left: 5.5rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,163 @@
+<ngx-smart-modal class="modal-auth" customClass="" #login identifier="login" (onClose)="closeAuth()">
+  <div class="modal__wrap">
+    <div class="modal__image" style="background-image: url('assets/img/layouts/bg.jpg')">
+      <h5 class="modal__h5">{{ 'cart.krinitsa' | translate }}</h5>
+      <h3 class="modal__h3">{{ 'cart.orderText' | translate }}</h3>
+    </div>
+    <div class="auth" *ngIf="authState">
+      <div class="auth__wrap">
+        <h4 class="auth__header">
+          {{ 'auth.header' | translate }}
+        </h4>
+        <h5 class="auth__old-user">{{ 'auth.oldUser' | translate }}
+        </h5>
+        <form class="auth__form" (keyup.enter)="auth($event)" [formGroup]="authForm" (ngSubmit)="auth()">
+          <div class="auth__pass-mess">
+            <span
+              [ngStyle]="{ 'opacity': uncorrectData && !authForm.value.isYUser ? '1' : '0'}">{{ 'auth.uncorrect' | translate }}</span>
+            <span
+              [ngStyle]="{ 'opacity': uncorrectData && authForm.value.isYUser ? '1' : '0'}">{{ 'auth.uncorrectCode' | translate }}</span>
+          </div>
+          <div *ngIf="unknowError" class="auth__pass-mess">
+            <span>{{ 'auth.unknown' | translate}}</span>
+          </div>
+          <div *ngIf="permissionDenied" class="auth__pass-mess">
+            <span>{{ 'auth.permissionDenied' | translate}}</span>
+          </div>
+          <div class="auth__tel auth__input"
+            [class.error]="authForm.controls.phone.invalid && authForm.controls.phone.dirty"
+            *ngIf="!authForm.value.isYUser">
+            <span class="auth__before">+380</span>
+            <input type="text" autofocus="true" [attr.maxlength]="9" formControlName="phone" placeholder="000000000"
+              OnlyNumber="true" />
+          </div>
+          <input class="auth__input" *ngIf="authForm.value.isYUser" type="text" [attr.maxlength]="8"
+            formControlName="code" [placeholder]="'auth.code' | translate" OnlyNumber="true" />
+          <div class="auth__password auth__input"
+            [class.error]="authForm.controls.password.invalid && authForm.controls.password.dirty">
+            <input type="password" [attr.maxlength]="20" formControlName="password"
+              placeholder=" {{ 'auth.password' | translate}}" />
+          </div>
+          <div class="auth__pass-mess"
+            [ngStyle]="{ 'visibility': authForm.controls['password'].errors && authForm.controls['password'].touched ? 'visible' : 'hidden' }">
+            <span>{{ 'auth.passMess' | translate }}</span>
+          </div>
+          <!-- <div class="auth__checkbox">
+            <div class="auth__checkbox-wrap">
+              <input class="checkbox" type="checkbox" id="isFUser" (change)="changeCheckbox()" formControlName="isYUser" />
+              <label for="isFUser" class="auth__checkbox-label"></label>
+            </div>
+            <label for="isFUser">{{ 'auth.person' | translate}}</label>
+          </div> -->
+          <ng-container *ngIf="!logining">
+            <button type="submit" class="auth__login auth__btn">{{ 'toolbar.auth' | translate }}</button>
+          </ng-container>
+          <ng-container *ngIf="logining">
+            <div class="auth__btn auth__checking">{{ 'auth.sending' | translate }}
+              <div><span>.</span><span>.</span><span>.</span></div>
+            </div>
+          </ng-container>
+          <a class="auth__reset" (click)="changeToForgot()">{{ 'auth.forget' | translate }}</a>
+          <button class="auth__register auth__btn"
+            (click)="registration()">{{ 'auth.registration' | translate }}</button>
+        </form>
+
+      </div>
+    </div>
+    <div class="forgot" *ngIf="forgotState">
+      <div class="forgot__wrap">
+        <h4 class="forgot__header">
+          {{ 'auth.forgetQuestion' | translate }}
+        </h4>
+        <p class="forgot__text">
+          {{ 'auth.forgetText' | translate }}
+        </p>
+        <p *ngIf="successChange" class="forgot__text">
+          {{ 'auth.successChange' | translate}}
+        </p>
+        <form *ngIf="!successChange" class="forgot__form" [formGroup]="forgetForm">
+          <div class="auth__input-error auth__mess">
+            <span *ngIf="phoneErr">{{ 'auth.uncorrect' | translate }}</span>
+          </div>
+          <div class="auth__input-error auth__mess">
+            <span *ngIf="userExist && forgetForm.controls.phone.invalid">
+              {{'auth.userExistByPhone' | translate}}</span>
+            <span *ngIf="unavailable && forgetForm.controls.phone.invalid">
+              {{'auth.unavailable' | translate}}</span>
+            <span *ngIf="forgotPermissionDenied && forgetForm.controls.phone.invalid">
+              {{'auth.forgotPermissionDenied' | translate}}</span>
+            <span *ngIf="phoneInvalid && forgetForm.controls.phone.invalid">
+              {{'auth.phoneInvalid' | translate}}</span>
+          </div>
+          <div class="auth__tel forgot__input"
+            [class.error]="forgetForm.controls['phone'].errors && forgetForm.controls.phone.touched">
+            <span class="auth__before">+380</span>
+            <input type="text" formControlName="phone" [attr.maxlength]="9" placeholder="000000000" OnlyNumber="true" />
+          </div>
+          <ng-container *ngIf="sendPasswordState">
+            <div class="auth__input-error auth__mess">
+              <span
+                *ngIf="uncorrectPhoneSms && forgetForm.controls.code.invalid">{{ 'auth.uncorrectHash' | translate}}</span>
+            </div>
+            <div class="auth__input-error auth__mess">
+              <span
+                *ngIf="codeErr && forgetForm.controls.code.invalid">{{ 'auth.uncorrectMobileCode' | translate}}</span>
+            </div>
+            <div class="auth__password auth__input"
+              [class.error]="forgetForm.controls.code.invalid && forgetForm.controls.code.touched">
+              <input type="text" [placeholder]="'auth.enterCode' | translate" [attr.maxlength]="4"
+                formControlName="code" OnlyNumber="true">
+            </div>
+            <div class="auth__input-error  auth__mess">
+              <span *ngIf="passwordErr && forgetForm.controls.password.invalid">{{ 'auth.passMess' | translate }}</span>
+            </div>
+            <div class="auth__password auth__input"
+              [class.error]="forgetForm.controls.password.invalid && forgetForm.controls.password.touched">
+              <input type="password" [attr.maxlength]="20" formControlName="password"
+                placeholder=" {{ 'auth.enterPassword' | translate}}" />
+            </div>
+            <div class="auth__input-error  auth__mess">
+              <span
+                *ngIf="repeatPasswordErr && forgetForm.controls.repeatPassword.invalid">{{ 'auth.uncorrectRepeat' | translate }}</span>
+            </div>
+            <div class="auth__password auth__input"
+              [class.error]="forgetForm.controls.repeatPassword.invalid && forgetForm.controls.repeatPassword.touched">
+              <input type="password" [attr.maxlength]="20" formControlName="repeatPassword"
+                placeholder=" {{ 'auth.repeatPassword' | translate}}" />
+            </div>
+            <div class="auth__input-error auth__mess" *ngIf="countResend != 0">
+              <p>
+                <a class="auth__re-send send" (click)="resendPassword()"
+                  *ngIf="count == 0">{{ 'auth.resendCode' | translate}}</a>
+                <a class="auth__re-send" *ngIf="count > 0">{{ 'auth.resendCodeAfter' | translate}} {{count}}</a>
+              </p>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!sendPhoneNubmer">
+            <button *ngIf="forgotPhoneState" type="button" class="forgot__send forgot__btn"
+              (click)="sendCode()">{{ 'auth.send' | translate }}</button>
+          </ng-container>
+          <ng-container *ngIf="sendPhoneNubmer">
+            <div class="auth__btn auth__checking">{{ 'auth.sending' | translate }}
+              <div><span>.</span><span>.</span><span>.</span></div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!changingPassword">
+            <button *ngIf="sendPasswordState" type="button" class="forgot__send forgot__btn"
+              (click)="changePassword()">{{ 'auth.change' | translate }}</button>
+          </ng-container>
+          <ng-container *ngIf="changingPassword">
+            <div class="auth__btn auth__checking">{{ 'auth.sending' | translate }}
+              <div><span>.</span><span>.</span><span>.</span></div>
+            </div>
+          </ng-container>
+          <button *ngIf="forgotPhoneState" type="button" class="forgot__login forgot__btn"
+            (click)="toAuth()">{{ 'toolbar.auth' | translate }}</button>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="registerState" class="registr">
+      <app-registration (toAuthEvent)="changeToAuth()"></app-registration>
+    </div>
+  </div>
+</ngx-smart-modal>

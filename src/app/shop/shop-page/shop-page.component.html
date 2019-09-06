@@ -1,0 +1,15 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="filter">
+  <div class="filter-header">
+    <div class="filter-header__breadcrumbs">
+      <a [routerLink]="['/'] | localize" class="filter-header__breadcrumbs-item">{{ 'home.name' | translate}}</a>
+      <a [routerLink]="['/', 'catalog', subCategory.urlName] | localize" class="filter-header__breadcrumbs-item">{{subCategory.subName}}</a>
+    </div>
+  </div>
+</div>
+<app-filters [filtersArray]="subCategory.filterings" [subCategoryName]="subCategory?.name" (filterEvent)="changeFilter($event)"></app-filters>
+<app-product-list [subCategoryName]="subCategory?.subName" [productsArray]="filteringProducts"> </app-product-list>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>
+<app-popular-request *ngIf="subCategory.seoLink" [links]="subCategory.seoLink.seoLinkRefs"></app-popular-request>

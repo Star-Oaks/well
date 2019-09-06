@@ -1,0 +1,14 @@
+<div class="subscribe">
+  <div class="subscribe__wrap"  >
+    <div class="subscribe__text">
+      <h4 class="subscribe__h4">{{'subscribe.header' | translate}}</h4>
+      <h6 class="subscribe__h6" >{{'subscribe.subHeader' | translate}}</h6> 
+    </div>
+    <div class="subscribe__form" *ngIf="data" [formGroup]="data">
+      <input *ngIf="!successSend" class="subscribe__input" [@inputChenged]="inputState"  type="email" placeholder="{{'subscribe.placeholder' | translate}}" formControlName="email">
+      <button *ngIf="!successSend" class="subscribe__btn"  [@inputChenged]="inputState" (click)="saveEmail()">{{'subscribe.send' | translate}}</button>
+      <span class="subscribe__invalid" [@visibilityChanged]="visiblityState">{{'subscribe.invalid' | translate}}</span>
+      <h6 class="subscribe__h4 text-success" [@textChenged]="textState">{{'subscribe.valid' | translate}}</h6>
+    </div>
+  </div>
+</div>

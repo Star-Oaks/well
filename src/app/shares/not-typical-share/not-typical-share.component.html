@@ -1,0 +1,70 @@
+<ngx-json-ld [json]="schemaBreadgrams"></ngx-json-ld>
+<div class="share">
+  <div class="share-header">
+    <div class="share-header__breadcrumbs">
+      <a [routerLink]="['/'] | localize" class="share-header__breadcrumbs-item">{{ 'home.name' | translate }}</a>
+      <a [routerLink]="['/akcii'] | localize" class="share-header__breadcrumbs-item">{{ 'shares.name' | translate }}</a>
+      <a [routerLink]="['/akcii', 'friend', data.urlName] | localize" class="share-header__breadcrumbs-item">
+        <app-text-ellipsis [symbolLength]="symbolsAllowed" [textContent]="data.header" [link]="true">
+        </app-text-ellipsis>
+      </a>
+    </div>
+    <h1 class="share-header__h2">{{ data.header }}</h1>
+    <h5 class="share-header__date">{{ data.publishDate | date: 'dd.MM.yy' }}</h5>
+  </div>
+  <div class="share-description">
+    <div class="share-description__img"
+      [ngStyle]="{'background-image': (data.bannerImageUrl ? 'url(' + data.bannerImageUrl + ')' : '') }"></div>
+    <div class="share-description__header">
+      <h5>{{ data.subheader }}</h5>
+    </div>
+    <div class="share-description__text text-container-light" [innerHtml]="data.description | sanitizeHtml"></div>
+  </div>
+  <div class="share-form">
+    <div class="share-form__header text-valid" [@visibilityChanged2]="visiblityHeader">
+      <h5>{{ 'shares.success' | translate }}</h5>
+    </div>
+    <form *ngIf="!sendState" [formGroup]="form" [@visibilityChanged]="visiblityState">
+      <div class="share-form__row" [formGroup]="form">
+        <div class="share-form__header">
+          <h5>{{ 'shares.yourData' | translate }}</h5>
+        </div>
+        <div class="share-form__input-wrap">
+          <input class="share-form__input" type="text" formControlName="name"
+            placeholder="{{ 'shares.placeholderName' | translate }}" />
+        </div>
+        <div class="share-form__input-wrap">
+          <input class="share-form__input" type="text" formControlName="address"
+            placeholder="{{ 'shares.placeholderAddress' | translate }}" />
+        </div>
+      </div>
+      <div class="share-form__row" formArrayName="inveteds">
+        <div class="share-form__header">
+          <h5>{{ 'shares.friendsData' | translate }}</h5>
+        </div>
+        <div class="contain-filds" *ngFor="let item of arrayItems.controls; let i = index" [formGroupName]="i">
+          <div class="share-form__input-wrap">
+            <input class="share-form__input" type="text" formControlName="name"
+              placeholder="{{ 'shares.placeholderNameFr' | translate }}" />
+          </div>
+          <div class="share-form__input-wrap">
+            <input class="share-form__input" type="text" formControlName="phoneNumber"
+              placeholder="{{ 'shares.placeholderPhoneFr' | translate }}" />
+          </div>
+        </div>
+        <button class="share-form__add-wrap" (click)="addNumber()">
+          <div class="share-form__add-icon" style="background-image: url('assets/img/icons/plus-white.png')"></div>
+          <span class="share-form__add-text">{{ 'shares.addNumber' | translate }}</span>
+        </button>
+      </div>
+      <span [@visibilityValid]="visiblityValidText" class="invalid-text">{{ 'shares.validText' | translate }}</span>
+      <div class="share-form__submit-wrap">
+        <input id="submitRecommendation" class="share-form__submit-button" type="button" (click)="checkout()"
+          value="{{ 'shares.recomend' | translate }}" />
+      </div>
+    </form>
+  </div>
+</div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

@@ -1,0 +1,22 @@
+<div class="our-clients" *ngIf = "data">
+
+    <div class="our-clients__wrap">
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <div class="our-clients__text">
+        <h4 class="our-clients__h4">{{data.header}}</h4>
+        <p class="text-container our-clients__p ">{{data.text}}</p>
+      </div>
+      <div class="our-clients__slider" *ngIf="slides && slides.length">
+        <ngx-slick-carousel class="our-clients-slider" (afterChange)="afterChange($event)" (init)="slickInit($event)" *ngIf="slides.length" [config]="slideConfig">
+          <div ngxSlickItem *ngFor="let slide of slides; trackBy: trackByFunc"  class="our-clients__slide">
+            <a target="_blank" class="our-clients__item">
+              <img class="our-clients__img" [defaultImage]="'assets/img/default_white.jpg'" [lazyLoad]="slide.logoUrl" [offset]="200" alt="logo">
+            </a>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>

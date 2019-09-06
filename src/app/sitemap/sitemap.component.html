@@ -1,0 +1,36 @@
+<div class="sitemap">
+  <h1 class="sitemap__h1">
+    {{ 'footer.sitemap' | translate}}
+  </h1>
+  <ul class="sitemap__list">
+    <li class="sitemap__item">
+      <a class="home sitemap__link" [routerLink]="['/'] | localize">
+        {{ 'home.name' | translate}}
+      </a>
+    </li>
+    <ng-container *ngFor="let item of links">
+      <li class="sitemap__item" *ngIf="item.asSubcategory; else notSubCategory">
+        <a class="sitemap__link" [routerLink]="['/catalog', item.urlName] | localize">
+          {{ item.name }}
+        </a>
+      </li>
+      <ng-template #notSubCategory>
+        <li class="sitemap__item">
+          <span class="head sitemap__link">
+            {{item.name}}
+          </span>
+          <ul class="sitemap__sub" class="dropdown-menu">
+            <li class="sitemap__sub-item" *ngFor="let sub of item.subCategories">
+              <a class="sitemap__sub-link" [routerLink]="['/catalog', item.urlName, sub.urlName] | localize">
+                -{{sub.name}}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ng-template>
+    </ng-container>
+  </ul>
+</div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

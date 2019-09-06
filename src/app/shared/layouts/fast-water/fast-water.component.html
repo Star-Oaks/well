@@ -1,0 +1,63 @@
+<ngx-smart-modal class="quick" #modalOrder customClass="nsm-dialog-animation-rtl" identifier="modalOrder"
+  (onClose)="closeQuick()" (onAnyCloseEvent)="resetForm()">
+  <div class="quick__wrap" *ngIf="modalName">
+    <div class="quick__order" *ngIf="quickState">
+      <a class="quick__order-close" (click)="modalOrder.close()"></a>
+      <div class="quick__left">
+        <div class="quick__text">
+          <h3 class="quick__h3">{{ modalName + '.header' | translate }}</h3>
+          <h5 class="quick__h5">{{'fastWater.subHeader' | translate}}</h5>
+        </div>
+        <div class="quick__register">
+          {{'fastWater.text' | translate}}
+        </div>
+      </div>
+      <div class="quick__right">
+        <form class="quick__form" (ngSubmit)="checkout()" [formGroup]="form">
+          <div class="quick__counter">
+            <span class="quick__counter-text">{{'fastWater.count' | translate}}</span>
+            <app-counter formControlName="bottleCount" [counterRangeMax]="99" [counterRangeMin]="2">
+            </app-counter>
+          </div>
+          <div class="quick__inputs">
+            <div class="quick__input-wrap">
+              <div class="quick__input" [class.error]="form.controls.name.invalid && form.controls.name.touched">
+                <input formControlName="name" type="text" placeholder="{{'fastWater.placeholderName' | translate}}">
+              </div>
+            </div>
+            <div class="quick__input-wrap">
+              <div class="quick__input"
+                [class.error]="form.controls.phoneNumber.invalid && form.controls.phoneNumber.touched">
+                <input formControlName="phoneNumber" type="text"
+                  placeholder="{{'fastWater.placeholderPhone' | translate}}">
+              </div>
+            </div>
+            <div class="quick__input-wrap">
+              <div class="quick__input" [class.error]="form.controls.city.invalid && form.controls.city.touched">
+                <input formControlName="city" type="text" placeholder="{{'fastWater.placeholderCity' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="quick__invalid" [@visibilityChanged]="visiblityState">{{'fastWater.invalid' | translate}}</div>
+          <button type="submit" class="quick__btn">{{'fastWater.checkout' | translate}}</button>
+          <div class="quick__auth" *ngIf="!isAuth">
+            <a class="quick__link" (click)="toAuth()">{{'fastWater.enter' | translate}}</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="quick__checkout" *ngIf="checkoutState">
+      <a class="quick__checkout-close" (click)="modalOrder.close()"></a>
+      <div class="quick__checkout-left">
+        <div class="quick__text">
+          <h3 class="quick__h3">{{'fastWater.headerSuccess' | translate}}</h3>
+          <h5 class="quick__h5">{{'fastWater.subHeaderSuccess' | translate}}</h5>
+        </div>
+        <div class="quick__register">
+          {{'fastWater.text' | translate}}
+        </div>
+      </div>
+      <div class="quick__checkout-right"></div>
+    </div>
+  </div>
+</ngx-smart-modal>

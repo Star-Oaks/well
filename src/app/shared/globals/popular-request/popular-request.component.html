@@ -1,0 +1,16 @@
+<div class="reqs" *ngIf="reqs.length && reqs[0].text">
+  <div class="reqs__wrap">
+    <div class="lines">
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="reqs__header">{{ 'popularRequest' | translate}}</div>
+    <div class="reqs__list">
+      <div class="reqs__item" *ngFor="let item of reqs">
+        <a *ngIf="item.text" class="reqs__link" [href]="item.link">
+          {{ item.text }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

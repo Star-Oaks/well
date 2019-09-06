@@ -1,0 +1,60 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+.filter {
+    padding: 6rem 2rem 0;
+    &-header {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        &__breadcrumbs {
+            display: none;
+            a+a {
+                &::before {
+                    content: "/\00a0";
+                    display: inline-block;
+                    padding-left: 0.5rem;
+                    color: $blue-text-1;
+                }
+            }
+            h1 {
+                display: inline-block;
+                cursor: pointer;
+            }
+        }
+        &__breadcrumbs,
+        &__breadcrumbs * {
+            color: $blue-text-1;
+            font-family: $regular;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .filter {
+        padding: 9.3rem 1.5rem 0 1.5rem;
+        &-header {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            &__breadcrumbs {
+                display: flex;
+                padding: 3rem 0 4rem;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .filter {
+        padding-top: 9.7rem;
+        max-width: 97rem;
+        &-header {
+            padding-left: 1.5rem;
+            &__breadcrumbs {
+                padding: 3rem 0 4rem;
+            }
+        }
+    }
+}

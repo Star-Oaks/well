@@ -1,0 +1,31 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+.counter {
+    display: flex;
+    flex-direction: row;
+    max-width: 8rem;
+    justify-content: space-between;
+
+    a,
+    span {
+        color: $blue-text-1;
+        font-family: $bold;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 24px;
+        text-transform: uppercase;
+        letter-spacing: 3.2px;
+    }
+
+    span {
+        cursor: default;
+        padding: 0 0.5rem;
+    }
+
+    a {
+        cursor: pointer;
+        padding: 0 1rem;
+    }
+}

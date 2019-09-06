@@ -1,0 +1,56 @@
+<ngx-smart-modal class="modal cart-modal" customClass="nsm-dialog-animation-rtl" #error identifier="error"
+  (onAnyCloseEvent)="onCloseErrorOrder()">
+  <div class="cart-modal__container">
+    <div class="cart-modal__bg-img" style="background-image: url('assets/img/layouts/bg.png')">
+      <h5 class="cart-modal__h5">{{ 'cart.krinitsa' | translate }}</h5>
+      <h3 class="cart-modal__h3">{{ 'cart.orderText' | translate }}</h3>
+    </div>
+    <div *ngIf="cartItems.length" class="cart-modal__wrap">
+      <h2 class="cart-modal__h2">{{ 'errorOrder.text' | translate }}</h2>
+      <span class="cart-modal__additional">{{ 'errorOrder.message' | translate}}</span>
+      <div class="cart-modal__wrap-content">
+        <div id="cartModal" #cartModal class="cart-modal__form">
+          <div class="cart-item__container" *ngFor="let item of cartItems; let i=index">
+            <div class="cart-item__width">
+              <div class="cart-item__wrap">
+                <div class="cart-item__img-wrap">
+                  <img class="cart-item__img" [src]="item.smallImageUrl" alt="order-image">
+                </div>
+                <div class="cart-item__description">
+                  <div class="cart-item__title">
+                    <p>{{item.name}}</p>
+                  </div>
+                  <div class="cart-item__counter">
+                    {{item.productCount}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="cart-item__price-wrap">
+                <span class="cart-item__price">{{item.productStandartPrice * item.productCount}}</span>
+                <span class="cart-item__currency">{{ 'shop.price' | translate }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-modal__footer">
+          <div class="cart-order__price-wrap">
+            <h5 class="cart-order__h5">{{ 'cart.toPay' | translate }}</h5>
+            <div class="cart-order__price">
+              <span class="cart-order__total">{{ totalCartPrice }}</span>
+              <span class="cart-order__currency">{{ 'shop.price' | translate }}</span>
+            </div>
+          </div>
+          <button class="cart-modal__submit-btn" type="submit" form="cartModal" [routerLink]="['/cart' | localize]"
+            [queryParams]="{'link': 'cart' }" (click)="reOrder()">
+            <span class="cart-modal__btn-text">{{ 'errorOrder.reOrder' | translate }}</span>
+          </button>
+          <a class="cart-modal__shopping-btn" (click)="closeErrorOrder()">
+            <span class="cart-modal__btn-text">{{ 'errorOrder.hide' | translate }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ngx-smart-modal>

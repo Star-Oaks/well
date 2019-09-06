@@ -1,0 +1,134 @@
+@import 'variables.scss';
+@import 'fonts.scss';
+@import 'base.scss';
+
+.list-container {
+    display: flex;
+    width: 100%; // height: calc(100% - 15rem);
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 3.5rem 2rem 0;
+
+    &::after {
+        content: "";
+        flex: calc(50% - 0.5rem);
+    }
+
+    .list {
+        flex: 0 0 calc(50% - 0.5rem);
+        width: calc(50% - 0.5rem);
+        margin-bottom: 1rem;
+        height: 30rem;
+        cursor: pointer;
+    }
+
+    &__more {
+        width: 100%;
+        display: flex;
+        padding-top: 2rem;
+        padding-bottom: 1.3rem;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+
+        &-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        span {
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            text-align: center;
+            color: $light-text-1;
+            text-transform: uppercase;
+        }
+
+        img {
+            margin-right: 1.8rem;
+        }
+    }
+
+    &__empty-text {
+        color: $main-text-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 400;
+        letter-spacing: 2.4px;
+        text-align: center;
+        padding-bottom: 2rem;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+
+    :host {
+        padding-bottom: 4.5rem;
+    }
+
+    .list-container {
+        &::after {
+            content: "";
+            flex: 0 0 calc(33.333% - 0.6666rem);
+            width: calc(33.333% - 0.6666rem);
+        }
+
+        padding: 0px 2.5rem 2.5rem;
+
+        &__more {
+            padding-top: 0.5rem;
+            padding-bottom: 3rem;
+        }
+
+        &__wrap {
+            border-bottom: 1px solid $border-color-035;
+            padding-bottom: 1rem;
+        }
+
+        .list {
+            flex: 0 0 calc(33.333% - 0.6666rem);
+            width: calc(33.333% - 0.6666rem);
+            margin-bottom: 1rem;
+            height: 37.5rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .list-container {
+        padding: 0;
+        max-width: 70vw;
+        width: 97rem;
+        padding-bottom: 1.2rem;
+        margin-left: 1px;
+
+        &::after {
+            content: "";
+            width: calc(33.333% - 1.6666rem);
+        }
+
+        &__more {
+            max-width: 70vw;
+            width: 97rem;
+            padding: 4rem 2rem 3rem 0;
+            align-items: flex-start;
+        }
+
+        &__wrap {
+            padding-bottom: 3.5rem;
+            max-width: 70vw;
+            width: 97rem;
+        }
+
+        .list {
+            width: calc(33.333% - 1.6666rem);
+            height: 50rem;
+            margin-bottom: 2rem;
+        }
+    }
+}

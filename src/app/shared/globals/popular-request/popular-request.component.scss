@@ -1,0 +1,124 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+.reqs {
+    &__wrap {
+        padding: 2.5rem 2rem;
+    }
+
+    &__header {
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        text-align: center;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+    }
+
+    &__item {
+        width: 50%;
+        padding-right: 2rem;
+    }
+
+    &__link {
+        font-family: $regular;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 25px;
+        color: $light-text-1;
+        margin: 0;
+        display: inline-block;
+        &::first-letter {
+            text-transform: uppercase;
+        }
+
+        &:active {
+            color: $red-1;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .reqs {
+        position: relative;
+
+        .lines {
+            position: absolute;
+            z-index: -1;
+            height: 100%;
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .line {
+            flex: 0 0 calc(33.333% - .1rem);
+            border-right: 1px solid transparent;
+            height: 100%;
+
+            &:nth-child(2) {
+                border-right: 1px solid $border-color-035;
+            }
+        }
+
+        &__wrap {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            padding: 2.5rem 2rem 0 0;
+        }
+
+        &__header {
+            order: 2;
+            width: 30vw;
+            text-align: right;
+        }
+
+        &__list {
+            width: 70vw;
+            order: 1;
+            padding: 0 2rem 4rem 2rem;
+            margin-top: 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .reqs {
+        .lines {
+            max-width: 97rem;
+        }
+
+        .line {
+            flex: 0 0 calc(33.333% + 0.6666rem);
+
+            &:nth-child(2) {
+                flex: 0 0 calc(33.333% + 0.6666rem);
+            }
+        }
+        &__wrap {
+            max-width: 70vw;
+            width: 97rem;
+            padding: 3rem 0 0;
+        }
+        &__list {
+            padding: 2rem 4rem 4rem 4.3rem;
+        }
+        &__header {
+            padding-top: 2rem;
+        }
+        &__link {
+            &:hover {
+                color: $red-1;
+            }
+        }
+    }
+}

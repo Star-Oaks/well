@@ -1,0 +1,134 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+.delivery {
+    position: relative;
+
+    .lines {
+        display: none;
+    }
+
+    &__wrap {
+        padding: 0 2rem 2.5rem;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    &__header {
+        padding: 4rem 0 2rem;
+    }
+
+    &__h4 {
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        text-align: center;
+    }
+
+    &__text {
+        color: $light-text-1;
+        font-family: $regular;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 25px;
+    }
+
+    &__read {
+        display: inline-block;
+        padding: 1rem 0;
+    }
+
+    &__less,
+    &__more {
+        color: $lighten-text-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        cursor: pointer;
+        font-weight: 400;
+        letter-spacing: 2.4px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .delivery {
+        .lines {
+            position: absolute;
+            z-index: -1;
+            height: 100%;
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .line {
+            flex: 0 0 calc(33.333% - .1rem);
+            border-right: 1px solid transparent;
+            height: 100%;
+
+            &:nth-child(2) {
+                border-right: 1px solid $border-color-035;
+            }
+        }
+
+        &__wrap {
+            flex-direction: row;
+            padding: 0 2.5rem 2.3rem 0;
+        }
+
+        &__header {
+            position: relative;
+            z-index: 2;
+            order: 2;
+            width: 30vw;
+            padding: 6.6rem 0 2rem;
+        }
+
+        &__h4 {
+            text-align: right;
+        }
+
+        &__text-wrap {
+            position: relative;
+            z-index: 2;
+            order: 1;
+            width: 70vw;
+            padding: 6.2rem 0 3rem 2rem;
+        }
+
+        &__text {
+            padding-right: 6rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .delivery {
+        .lines {
+            max-width: 97rem;
+        }
+
+        .line {
+            flex: 0 0 calc(33.333% + 0.6666rem);
+
+            &:nth-child(2) {
+                flex: 0 0 calc(33.333% + 0.6666rem);
+            }
+        }
+
+        &__wrap {
+            max-width: 70vw;
+            width: 97rem;
+            padding: 0;
+        }
+
+        &__text,
+        &__read {
+            padding-left: 2.3rem;
+        }
+    }
+}

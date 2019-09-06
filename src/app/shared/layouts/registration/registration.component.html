@@ -1,0 +1,128 @@
+<div class="registration">
+  <h4 class="registration__header">
+    {{ 'auth.registration' | translate}}
+  </h4>
+  <!-- <p class="registration__header-text">
+    Уважаемие клиенты! Ми внедрили систему личного кабинета, каторая позволит Вам: не вводить свои данніе при каждом
+    заказеб сделать заказ внесколько кликов. После регистрации, Вы сможете продолжить оформление заказаю
+  </p> -->
+  <form class="registration__form" *ngIf="!serviceTemporarilyUnavailable; else serviceUnavailable"
+    [formGroup]="registerForm">
+    <ng-container *ngIf="firstPart">
+      <div class="registration__error registration__mess">
+        <span *ngIf="userExist">{{ 'auth.userExist' | translate}}</span>
+      </div>
+      <div class="registration__error registration__mess"
+        [ngStyle]="{'visibility': !correctData ? 'visible' : 'hidden' }">
+        <span>{{ 'auth.uncorrectData' | translate }}</span>
+      </div>
+      <div class="registration__input-error registration__mess">
+        <span *ngIf="nameErr && registerForm.controls.fName.invalid">{{ 'auth.uncorrectName' | translate }}</span>
+      </div>
+      <div class="registration__input-wrap"
+        [class.error]="registerForm.controls.fName.invalid && registerForm.controls.fName.touched">
+        <input type="text" class="registration__name registration__input" [attr.maxlength]="20" [placeholder]=" 'auth.name' | translate "
+          formControlName="fName" autocomplete="off">
+      </div>
+      <div class="registration__input-error registration__mess">
+        <span *ngIf="emailErr && registerForm.controls.email.invalid">{{ 'auth.uncorrectEmail' | translate }}</span>
+      </div>
+      <div class="registration__input-wrap"
+        [class.error]="registerForm.controls.email.invalid && registerForm.controls.email.touched">
+        <input type="email" autocomplete="off" class="registration__email registration__input" placeholder="Email"
+          formControlName="email">
+      </div>
+      <div class="registration__input-error registration__mess">
+        <span *ngIf="phoneErr && registerForm.controls.phone.invalid">{{ 'auth.uncorrectPhone' | translate }}</span>
+      </div>
+      <div class="registration__tel registration__input registration__input-wrap"
+        [class.error]="registerForm.controls.phone.invalid && registerForm.controls.phone.touched">
+        <span class="registration__before">+380</span>
+        <input type="text" autocomplete="off" [attr.maxlength]="9" formControlName="phone" placeholder="000000000"
+          OnlyNumber="true">
+      </div>
+      <p class="registration__form-text">{{ 'auth.sms' | translate }}</p>
+      <div class="registration__accept registration__mess">
+        <span *ngIf="registerForm.value.accept != true && acceptErr">{{ 'auth.uncorrectAccept' | translate }}</span>
+      </div>
+      <div class="registration__form-checkRules">
+        <input id="accept" type="checkbox" class="registration__form-checkbox" formControlName="accept">
+        <label for="accept" [class.pulse]="registerForm.value.accept != true && registerForm.controls['accept'].touched"
+          class="registration__form-checkRules-label"></label>
+        <p class="registration__form-rules">
+          {{ 'auth.accept' | translate }}
+          <a [routerLink]="['/agreements', 'user-agreement'] |localize" target="_blank">
+            <span>{{ 'auth.conditions' | translate }}</span>
+          </a>
+        </p>
+      </div>
+      <button *ngIf="!check" type="button" class="registration__btn registration__form-send" (click)="verification()">
+        {{ 'auth.continue' | translate }}
+      </button>
+      <ng-container *ngIf="check">
+        <div class="registration__btn registration__checking">{{ 'auth.check' | translate }}
+          <div><span>.</span><span>.</span><span>.</span></div>
+        </div>
+      </ng-container>
+      <button type="button" class="registration__btn registration__form-enter"
+        (click)="toAuth()">{{ 'personal.back' | translate }}</button>
+    </ng-container>
+    <ng-container *ngIf="secondPart">
+      <div class="registration__your-phone registration__mess">
+        <span>{{ 'auth.yourPhone' | translate }}:</span>
+        <span class="dark-blue">
+          +380{{registerForm.value.phone}}
+        </span>
+      </div>
+      <div class="registration__input-error registration__mess">
+        <span *ngIf="codeErr && registerForm.controls.code.invalid">{{ 'auth.uncorrectMobileCode' | translate }}</span>
+      </div>
+      <div class="registration__input-error registration__mess"
+        *ngIf="mobileCodeUncorrect && registerForm.controls['code'].valid">
+        <span>{{ 'auth.uncorrectHash' | translate}}</span>
+      </div>
+      <div class="registration__input-wrap"
+        [class.error]="registerForm.controls.code.errors && registerForm.controls.code.touched">
+        <input type="text" autocomplete="off" class="registration__input" [placeholder]="'auth.enterCode' | translate"
+          [attr.maxlength]="4" formControlName="code" OnlyNumber="true">
+      </div>
+      <div class="registration__input-error registration__mess">
+        <span *ngIf="passErr && registerForm.controls.password.invalid">{{ 'auth.passMess' | translate }}</span>
+      </div>
+      <div class="registration__input-wrap"
+        [class.error]="registerForm.controls.password.invalid && registerForm.controls.password.touched">
+        <input type="password" autocomplete="off" class="registration__input"
+          [placeholder]="'auth.enterPassword' | translate" [attr.maxlength]="20" formControlName="password">
+      </div>
+      <div class="registration__input-error registration__mess">
+        <span *ngIf="repeatPassErr && registerForm.controls.repeatPassword.invalid">{{ 'auth.uncorrectRepeat' | translate }}</span>
+      </div>
+      <div class="registration__input-wrap"
+        [class.error]="registerForm.controls['repeatPassword'].errors && registerForm.controls.repeatPassword.touched">
+        <input type="password" class="registration__input" [attr.maxlength]="20"
+          [placeholder]="'auth.repeatPassword' | translate" autocomplete="off" formControlName="repeatPassword">
+      </div>
+      <div class="registration__input-error registration__mess" *ngIf="countResend != 0">
+        <p>
+          <a class="registration__re-send send" (click)="resendPassword()"
+            *ngIf="count == 0">{{ 'auth.resendCode' | translate}}</a>
+          <a class="registration__re-send" *ngIf="count > 0">{{ 'auth.resendCodeAfter' | translate}} {{count}}</a>
+        </p>
+      </div>
+      <button *ngIf="!sending" type="submit" class="registration__btn registration__form-send"
+        (click)="sendData()">{{ 'auth.register' | translate }}</button>
+      <ng-container *ngIf="sending">
+        <div class="registration__btn registration__checking">{{ 'auth.sending' | translate }}
+          <div><span>.</span><span>.</span><span>.</span></div>
+        </div>
+      </ng-container>
+      <button type="button" class="registration__btn registration__form-enter"
+        (click)="toFirstPart()">{{ 'auth.changePhone' | translate }}</button>
+    </ng-container>
+  </form>
+  <ng-template #serviceUnavailable>
+    <h4 class="registration__header registration__error">
+      {{ 'auth.unavailable' | translate}}
+    </h4>
+  </ng-template>
+</div>

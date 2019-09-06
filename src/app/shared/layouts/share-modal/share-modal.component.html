@@ -1,0 +1,53 @@
+<ngx-smart-modal class="modalShare" #modalShare customClass="nsm-dialog-animation-rtl" identifier="modalShare" (onAnyCloseEvent)="resetForm()">
+  <div class="quick__wrap">
+    <!-- *ngIf="modalName" -->
+    <div class="quick__order" *ngIf="quickState">
+      <a class="quick__order-close" (click)="modalShare.close()"></a>
+      <div class="quick__left">
+        <div class="quick__text">
+          <h3 class="quick__h3">{{'shares.order' | translate}}</h3>
+          <h5 class="quick__h5">{{'fastWater.subHeader' | translate}}</h5>
+        </div>
+        <div class="quick__register">
+          {{'fastWater.text' | translate}}
+        </div>
+      </div>
+      <div class="quick__right">
+        <form class="quick__form" (ngSubmit)="checkout()" [formGroup]="form">
+          <div class="quick__inputs">
+            <div class="quick__input-wrap">
+              <div class="quick__input" [class.error]="form.controls.name.invalid && form.controls.name.touched">
+                <input formControlName="name" type="text" placeholder="{{'fastWater.placeholderName' | translate}}">
+              </div>
+            </div>
+            <div class="quick__input-wrap">
+              <div class="quick__input" [class.error]="form.controls.phone.invalid && form.controls.phone.touched">
+                <input formControlName="phone" type="text" placeholder="{{'fastWater.placeholderPhone' | translate}}">
+              </div>
+            </div>
+          </div>
+          <div class="quick__invalid" [@visibilityChanged]="visiblityState">{{'fastWater.invalid' | translate}}</div>
+          <div class="wrap__share-modal">
+            <button type="submit" class="quick__btn">{{'fastWater.checkout' | translate}}</button>
+            <div class="quick__auth" *ngIf="!isAuth">
+              <a class="quick__link" (click)="toAuth()">{{'fastWater.enter' | translate}}</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="quick__checkout" *ngIf="checkoutState">
+      <a class="quick__checkout-close" (click)="modalShare.close()"></a>
+      <div class="quick__checkout-left">
+        <div class="quick__text">
+          <h3 class="quick__h3">{{'fastWater.headerSuccess' | translate}}</h3>
+          <h5 class="quick__h5">{{'fastWater.subHeaderSuccess' | translate}}</h5>
+        </div>
+        <div class="quick__register">
+          {{'fastWater.text' | translate}}
+        </div>
+      </div>
+      <div class="quick__checkout-right"></div>
+    </div>
+  </div>
+</ngx-smart-modal>

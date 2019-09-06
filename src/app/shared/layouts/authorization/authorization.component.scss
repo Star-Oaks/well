@@ -1,0 +1,677 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+::ng-deep ngx-smart-modal.modal-auth {
+    .nsm-dialog {
+        max-width: 100%;
+        width: 100%;
+        min-height: 48rem;
+        transform: translateX(20%);
+        transition: transform 400ms ease-in-out, opacity 400ms;
+
+        &.nsm-dialog-open {
+            transform: translateX(0);
+        }
+    }
+
+    .nsm-content {
+        background-color: $white-1;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nsm-dialog-btn-close {
+        top: 1.9rem;
+        right: 1.3rem;
+    }
+
+    .nsm-dialog-btn-close img {
+        width: 1.4rem;
+    }
+
+    .overlay {
+        &.nsm-overlay-open {
+            background-color: $overlay-082;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .nsm-dialog-btn-close {
+            top: 3.8rem;
+            right: 4rem;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .nsm-content {
+            // width: calc(100vw - 23.44444%);
+            // margin-left: auto;
+        }
+
+        .nsm-dialog-btn-close {
+            right: 2.5rem;
+        }
+
+        .nsm-dialog {
+            width: calc(100vw - 23.44444% - (100vw - 1440px)/3.75);
+            margin-right: 0;
+            transform: translateX(20%);
+            transition: transform 400ms ease-in-out, opacity 400ms;
+
+            &.nsm-dialog-open {
+                transform: translateX(0);
+            }
+        }
+
+    }
+}
+
+.modal {
+    &__image {
+        display: none;
+    }
+}
+
+.auth {
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 3rem 0;
+    }
+
+    &__header {
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        margin: 3.5rem 0 4rem;
+    }
+
+    &__old-user {
+        max-width: 24rem;
+        color: $red-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 12px;
+        margin: 1rem 0 4rem;
+        text-align: center;
+        line-height: 18px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 33rem;
+        height: 39rem;
+        position: relative;
+    }
+
+    &__input {
+        width: 28rem;
+        min-height: 4.4rem;
+        box-shadow: $input-shadow-006;
+        border-radius: 22px;
+        background-color: $white-1;
+        border: none;
+        outline: none;
+        color: $dark-blue-text-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        padding: 0 3.2rem;
+        margin: 1rem 0;
+        transition: box-shadow 0.5s linear;
+
+        &::placeholder {
+            color: $dark-blue-text-1;
+            font-family: $regular;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.6px;
+        }
+
+        &.error {
+            box-shadow: 0 0 1px 1px $red-1;
+        }
+    }
+
+    &__tel,
+    &__password {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input {
+            border: none;
+            outline: none;
+            min-height: 4.4rem;
+            background-color: transparent;
+        }
+
+        input[disabled] {
+            background-color: transparent;
+        }
+    }
+
+    &__tel {
+        input {
+            padding-left: 3.2rem;
+        }
+
+        .auth__before {
+            position: absolute;
+            left: 3.2rem;
+            top: 50%;
+            transform: translateY(-52%);
+        }
+    }
+
+    &__mess {
+        font-family: $regular;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 12px;
+        color: $light-text-1;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
+    &__input-error {
+        display: inline-block;
+        width: 28rem;
+        text-align: left;
+        color: $red-1;
+        padding: 0 3.2rem;
+        font-size: 1.2rem;
+    }
+
+    &__pass-mess {
+        max-width: 29rem;
+        color: $red-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 400;
+        letter-spacing: 0.6px;
+        transition: opacity 0.5s linear;
+    }
+
+    &__re-send {
+
+        color: $light-text-1;
+        font-size: 1rem;
+        margin: 2rem 0 0;
+        display: inline-block;
+        text-transform: uppercase;
+        text-align: center;
+        width: 100%;
+
+        &:active {
+            color: $red-1;
+        }
+
+        &.send {
+            cursor: pointer;
+            color: $red-1;
+        }
+    }
+
+    &__checkbox {
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+
+        &-wrap {
+            display: flex;
+            margin-right: 1rem;
+
+            input {
+                background-color: transparent;
+                display: none;
+            }
+        }
+
+        &-label {
+            display: flex;
+            width: 1.4rem;
+            height: 1.4rem;
+            padding: 0;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid $dark-blue-text-1;
+            border-radius: 3px;
+            background-color: $white-1;
+            position: relative;
+
+            &::after {
+                content: '';
+                display: none;
+                position: absolute;
+                background-color: $dark-blue-text-1;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 1px;
+                width: 60%;
+                height: 60%;
+            }
+        }
+
+        input[type="checkbox"]:checked+label {
+            padding: 2px;
+        }
+
+        input[type="checkbox"]:checked+label::after {
+            display: block;
+        }
+    }
+
+    &__btn {
+        width: 28rem;
+        height: 4.4rem;
+        margin: 2.5rem 0;
+        border-radius: 22px;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    &__login {
+        box-shadow: $button-shadow-018;
+        background-color: $red-1;
+        color: $white-1;
+
+        &:active {
+            background-color: $dark-blue-text-1;
+        }
+    }
+
+    &__checking {
+        cursor: default;
+        margin-bottom: 2.5rem;
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $dark-blue-text-1;
+
+        span {
+            animation-name: blink;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+            font-size: 2.4rem;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        span:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        span:nth-child(3) {
+            animation-delay: .4s;
+        }
+    }
+
+    &__register {
+        background-color: $white-1;
+        border: 1px solid $red-1;
+        color: $red-1;
+
+        &:active {
+            background-color: $dark-blue-text-1;
+            border: 1px solid $dark-blue-text-1;
+            color: $white-1
+        }
+    }
+
+    &__reset {
+        color: $blue-text-1;
+        font-family: $regular;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        padding: 0.2rem 2rem;
+
+        &:active {
+            color: $red-1
+        }
+    }
+}
+
+.forgot {
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 100vh;
+        padding: 3rem 0;
+    }
+
+    &__header {
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        margin: 3.5rem 0 2.2rem;
+    }
+
+    &__text {
+        color: $light-text-1;
+        font-family: $regular;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 25px;
+        padding: 0 3rem;
+        text-align: center;
+        margin-bottom: 2.3rem;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 20.5rem;
+    }
+
+    &__input {
+        width: 28rem;
+        height: 4.4rem;
+        box-shadow: $input-shadow-006;
+        border-radius: 22px;
+        background-color: $white-1;
+        border: none;
+        outline: none;
+        color: $dark-blue-text-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        padding: 0 3.2rem;
+        margin: 1rem 0;
+        transition: box-shadow 0.5s linear;
+
+        &::placeholder {
+            color: $dark-blue-text-1;
+            font-family: $regular;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.6px;
+        }
+
+        &.error {
+            box-shadow: 0 0 1px 1px $red-1;
+        }
+    }
+
+    &__btn {
+        width: 28rem;
+        height: 4.4rem;
+        border-radius: 22px;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+    &__send {
+        box-shadow: $button-shadow-018;
+        background-color: $red-1;
+        color: $white-1;
+        margin-top: 1.6rem;
+
+        &:active {
+            background-color: $dark-blue-text-1;
+        }
+    }
+
+    &__login {
+        background-color: $white-1;
+        border: 1px solid $red-1;
+        color: $red-1;
+        margin-top: 2.6rem;
+
+        &:active {
+            background-color: $dark-blue-text-1;
+            border: 1px solid $dark-blue-text-1;
+            color: $white-1;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .modal {
+        &__wrap {
+            padding: 0;
+            display: flex;
+        }
+
+        &__image {
+            display: block;
+            flex: 0 0 47.916%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            flex-direction: column; // align-items: center;
+            justify-content: center;
+
+            &::after {
+                position: absolute;
+                content: '';
+                height: 100%;
+                width: 100%;
+                left: 0;
+                top: 0;
+                z-index: 1;
+                background-color: $dark-black-05;
+            }
+        }
+
+        &__h5,
+        &__h3 {
+            color: $white-1;
+            position: relative;
+            z-index: 2;
+            padding: 0 2.3rem;
+        }
+
+        &__h5 {
+            font-family: $bold;
+            font-size: 1.6rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 3.2px;
+            line-height: 40px;
+        }
+
+        &__h3 {
+            font-family: $extrabold;
+            font-size: 4.5rem;
+            font-weight: 400;
+            line-height: 60px;
+            text-transform: uppercase;
+            letter-spacing: 2.25px;
+        }
+    }
+
+    .registr {
+        flex: 0 0 52.083%;
+    }
+
+    .auth {
+        flex: 0 0 52.083%;
+
+        &__wrap {
+            justify-content: flex-start;
+        }
+
+        &__header {
+            margin: 8.5rem 0 5rem;
+        }
+
+        &__old-user {
+            margin: 1rem 0 6rem;
+        }
+
+        &__form {
+            height: auto;
+        }
+
+        &__input {
+            width: 30.2rem;
+            margin: 0.75rem;
+            padding: 0 3.4rem;
+        }
+
+        &__btn {
+            width: 30.2rem;
+        }
+
+        &__login {
+            margin: 3rem 0 4.5rem;
+        }
+
+        &__register {
+            margin: 4.5rem 0 2rem;
+        }
+
+        &__input-error {
+            width: 30.2rem;
+            padding: 0 3.4rem;
+        }
+    }
+
+    .forgot {
+        flex: 0 0 52.083%;
+
+        &__header {
+            margin: 9.5rem 0 3rem;
+        }
+
+        &__text {
+            padding: 0 5rem;
+            margin-bottom: 3.9rem;
+        }
+
+        &__form {
+            height: auto;
+        }
+
+        &__input {
+            width: 30.2rem;
+            margin: 0.75rem;
+            padding: 0 3.4rem;
+        }
+
+        &__btn {
+            width: 30.2rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .modal {
+        &__image {
+            flex: 0 0 54.38%;
+        }
+
+        &__h3,
+        &__h5 {
+            padding: 0 2.3rem 0 6rem;
+        }
+    }
+
+    .auth {
+        flex: 0 0 45.61%;
+
+        &__login {
+            &:hover {
+                background-color: $dark-blue-text-1;
+            }
+        }
+
+        &__register {
+            &:hover {
+                background-color: $dark-blue-text-1;
+                border: 1px solid $dark-blue-text-1;
+                color: $white-1
+            }
+        }
+
+        &__reset {
+            &:hover {
+                color: $red-1
+            }
+        }
+
+        &__re-send {
+            &.send:hover {
+                color: $red-1;
+            }
+        }
+    }
+
+    .registr {
+        flex: 0 0 45.61%;
+    }
+
+    .forgot {
+        flex: 0 0 45.61%;
+
+        &__send {
+            &:hover {
+                background-color: $dark-blue-text-1;
+            }
+        }
+
+        &__login {
+            &:hover {
+                background-color: $dark-blue-text-1;
+                border: 1px solid $dark-blue-text-1;
+                color: $white-1;
+            }
+        }
+
+        &__text {
+            max-width: 35rem;
+            padding: 0;
+        }
+    }
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: inherit;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
