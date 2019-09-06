@@ -1,0 +1,59 @@
+<a class="list-item" *ngIf="product" [routerLink]="['/products', product.categoryUrlName, product.urlName] | localize">
+  <div class="list-contain1">
+    <img class="list-contain1__img" [src]="product?.photo?.smallImageUrl" [alt]="product.name" [title]="product.name" />
+    <div class="list-contain1__description">{{product.name}}</div>
+    <div class="list-contain1__count" (click)="parentEvent($event)" *ngIf="product.minOrderCount > 1">
+      <app-counter class="cart-item__counter" (currentValueChange)="getItemCount($event)" [counterValue]="1"
+        [counterRangeMax]="99" [counterRangeMin]="1">
+      </app-counter>
+    </div>
+    <div class="list-contain1__share" *ngIf="product.productLabel"
+      [ngStyle]="{'background-color': product.productLabel.color ? product.productLabel.color : ''}">
+      <ng-container *ngIf="product.productLabel.labelType == 0">{{ product.productLabel.text }}
+      </ng-container>
+      <ng-container *ngIf="product.productLabel.labelType == 1">
+        <span>-{{product.productLabel.discount}}%</span>
+      </ng-container>
+    </div>
+  </div>
+  <div class="list-contain2">
+    <span *ngIf="checkForConst(product.urlName)"
+      class="list-contain2__tooltip" (click)="openTooltip($event)" #tooltip="tooltipDir"
+      tooltip="{{ 'shop.tooltip' | translate}}" placement="top" [offset]="40" show-delay="300">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <g id="info">
+          <path id="circled-i"
+            d="M11.5 17a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-12a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zm.5 5v4h1v1h-3v-1h1v-3h-1v-1zm-1-2h1v1h-1z" />
+        </g>
+      </svg>
+    </span>
+    <div class="list-contain2__cost" *ngIf="!product.isPackaging; else isPackaging">
+      <span class="list-contain2__price-text">{{ 'shop.priceText' | translate}}:</span>
+      <div clas="list-contain2__price">
+        <span class="list-contain2__number">{{ product.price * ( product.count || product.minOrderCount || 1) }}</span>
+        <span class="list-contain2__text">
+          <ng-container *ngIf="product.byThing; else notByThing">
+            {{ 'shop.price' | translate }} / {{ 'shop.byThing' | translate}}
+          </ng-container>
+          <ng-template #notByThing>
+            {{ 'shop.price' | translate }}
+          </ng-template>
+        </span>
+      </div>
+    </div>
+    <ng-template #isPackaging>
+      <div class="list-contain2__cost">
+        <span class="list-contain2__price-text">{{ 'shop.priceText' | translate}}:</span>
+        <div clas="list-contain2__price">
+          <span class="list-contain2__number">{{product.price}}</span>
+          <span class="list-contain2__text">{{ 'shop.price' | translate }} /
+            {{ 'shop.priceItem' | translate }}</span>
+        </div>
+      </div>
+    </ng-template>
+    <div class="list-contain2__button" (click)="addToCart($event)">
+      <span *ngIf="!product.adding"> {{ 'shop.toCart' | translate}}</span>
+      <span *ngIf="product.adding"> {{ 'shop.successAdd' | translate}}</span>
+    </div>
+  </div>
+</a>

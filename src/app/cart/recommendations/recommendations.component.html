@@ -1,0 +1,18 @@
+<div class="recommend-order" *ngIf="products.length">
+  <div class="recommend-order__header">
+    <h2 class="recommend-order__h2">{{ 'order.recomend' | translate }}</h2>
+  </div>
+  <div class="recommend-order__slider-wrap">
+    <ng-container *ngIf="mobileScreen">
+      <app-recommendations-list [productsArray]="products">
+      </app-recommendations-list>
+    </ng-container>
+    <ng-container *ngIf="largeScreen">
+      <ngx-slick-carousel (afterChange)="afterChange($event)" (init)="slickInit($event)" class="carousel recommend-order__slider" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let slide of products" class="recommend-order__slide">
+          <app-recommendations-item [product]="slide" class="recommend-order__list"></app-recommendations-item>
+        </div>
+      </ngx-slick-carousel>
+    </ng-container>
+  </div>
+</div>

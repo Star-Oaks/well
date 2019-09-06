@@ -1,0 +1,212 @@
+
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+@import "text-container.scss";
+
+.company{
+    margin-top: 6rem;
+
+    &-banner{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &-header{
+        padding-left: 2rem;
+        padding-right: 2rem;
+        width: 100%;
+        height: calc(100vh - 6rem);
+        background-color: $company-banner-color;
+        
+        &__content{
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        &__h2{
+            font-family: $extrabold;
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.75px;
+            color: $white-1;
+        }
+
+        &__h5{
+            display: flex;
+            color: $white-1;
+            font-family: $regular;
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 2.5rem;
+            padding-top: 1rem;
+            padding-bottom: 3.8rem;
+        }
+        
+        &__promo-link{
+            cursor: pointer;
+            width: 20.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $red-1;
+            border-radius: 2.2rem;
+            height: 4.4rem;
+            margin-bottom: 2.5rem;
+            &:active {
+                background-color: $dark-blue-text-1;
+            }
+        }
+
+        &__promo-link, &__promo-link *{
+            color: $white-1;
+            font-family: $light;
+            font-size: 1.4rem;
+            font-weight: 300;
+            line-height: 7.2rem;
+            letter-spacing: 0.7px;
+        }
+    }
+
+    &-history{
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid $border-color-035;
+
+        &__h3{
+            display: flex;
+            font-family: $bold;
+            color: $dark-blue-text-1;
+            font-size: 1.2rem;
+            font-weight: 400;
+            padding-top: 3.7rem;
+            padding-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2.4px;
+        }
+
+        &__text-wrap{
+            padding-bottom: 1rem;
+        }
+
+        &__breadcrumbs{
+            display: none;
+            a+a{
+                &::before{
+                    content: "/\00a0";
+                    display: inline-block;
+                    padding-left: 0.5rem;
+                    color: $blue-text-1;                    
+                }
+            }
+        }
+
+        &__breadcrumbs, &__breadcrumbs * {
+            color: $blue-text-1;
+            font-family: $regular;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px){
+
+    .company{
+        margin-top: 9.4rem;
+
+        &-header{
+
+            height: calc(100vh - 9.4rem);
+
+            &__content{
+                padding-left: 8.5rem;
+            }
+
+            &__h2{
+                font-size: 4.5rem;
+            }
+
+            &__h5{
+                max-width: 32.7rem;
+            }
+
+            &__promo-link{
+                margin-bottom: 0;
+                &:hover {
+                    background-color: $dark-blue-text-1;
+                }
+            }
+    
+        }
+    
+        &-history{
+
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+            padding-bottom: 3rem;            
+
+            &__breadcrumbs{
+                display: flex;
+                padding-top: 3rem;
+            }
+
+            &__h3{
+                padding-bottom: 3rem;
+            }
+    
+        }
+
+    }
+
+}
+
+@media screen and (min-width: 1200px){
+
+    .company{
+        margin-top: 0;
+        
+        &-header{
+            height: 100vh;
+
+            &__content{
+                padding-left: 8.2rem;
+            }
+
+            &__h2{
+                margin-top: 9rem;
+            }
+
+            &__h5{
+                max-width: 33.7rem;
+            }
+        }
+    
+        &-history{
+            padding-right: 0;
+            padding-left: 3rem;
+            max-width: 70vw;
+            width: 97rem;
+            padding-bottom: 5rem;
+
+            &__breadcrumbs{
+                padding-top: 3.75rem;
+                cursor: pointer;
+            }
+
+            &__h3{
+                padding-top: 7.5rem;
+                padding-bottom: 3rem;
+            }
+        }
+        
+    }
+
+}

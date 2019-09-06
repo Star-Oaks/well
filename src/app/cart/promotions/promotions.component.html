@@ -1,0 +1,19 @@
+<div class="promotions-order" *ngIf="products.length">
+  <div class="promotions-order__header">
+    <h2 class="promotions-order__h2">{{ 'order.promotions' | translate }}</h2>
+  </div>
+  <div class="promotions-order__slider-wrap">
+    <ng-container *ngIf="mobileScreen">
+      <app-promotions-list [productsArray]="products">
+      </app-promotions-list>
+    </ng-container>
+    <ng-container *ngIf="largeScreen">
+      <ngx-slick-carousel (afterChange)="afterChange($event)" (init)="slickInit($event)"
+        class="carousel promotions-order__slider" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let slide of products" class="promotions-order__slide">
+          <app-promotions-item [product]="slide" class="promotions-order__list"></app-promotions-item>
+        </div>
+      </ngx-slick-carousel>
+    </ng-container>
+  </div>
+</div>

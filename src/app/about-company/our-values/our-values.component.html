@@ -1,0 +1,30 @@
+<div class="company-values">
+  <div class="lines">
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+  <div class="company-values__static-wrap">
+    <h3 class="company-values__h3">{{data.header}}</h3>
+    <div class="company-values__text-wrap">
+      <p class="company-values__paragraph">
+        {{data.text}}
+      </p>
+    </div>
+  </div>
+  <div class="company-values__slider-wrap">
+    <ng-container>
+      <ngx-slick-carousel (afterChange)="afterChange($event)" (init)="slickInit($event)" #slick class="carousel company-values__slider" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let slide of data.companyPageValuesItems" class="company-values__slide">
+          <div class="company-values__slider-content">
+            <h5 class="company-values__title">
+              {{slide.header}}
+            </h5>
+            <p class="company-values__description">
+              {{slide.text}}
+            </p>
+          </div>
+        </div>
+      </ngx-slick-carousel>
+    </ng-container>
+  </div>
+</div>

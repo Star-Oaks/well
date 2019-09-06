@@ -1,0 +1,179 @@
+
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+::ng-deep ngx-slick-carousel.company-activity__slider{
+    padding-top: 8.5rem;
+    padding-bottom: 1.5rem;
+
+    .slick-slide{
+        height: auto;
+    }
+
+    .slick-track, .slick-list{
+        height: 100%;
+    }
+
+    .slick-arrow {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.5rem;
+        svg {
+            fill: $main-text-05;
+        }
+        &:active {
+            svg {
+                fill: $main-text-1;
+            }
+        }
+    }
+    .slick-next {
+        top: 1.5rem;
+    }
+    .slick-prev {
+        top: 3.5rem;
+    }
+
+    @media screen and (min-width: 768px){
+        position: relative;
+        height: 100%;
+        padding-top: 12.5rem;
+        padding-bottom: 0;
+
+        .slick-list, .slick-track{
+            height: 100%;
+        }
+
+        .slick-slide{
+            height: auto;
+        }
+
+        .slick-next{
+            left: 0;
+            transform: none;
+            top: 3.5rem;
+            padding-left: 0;
+        }
+
+        .slick-prev{
+            left: 0;
+            transform: none;
+            top: 5.5rem;
+            padding-left: 0;
+        }
+    }
+
+    @media screen and (min-width: 1200px){
+        margin-left: 0;
+        padding-top: 12rem;
+
+        .slick-prev{
+            padding-right: 0;
+            left: 3rem;
+        }
+        .slick-next{
+            padding-right: 0;
+            left: 3rem;
+        }
+
+        .slick-arrow {
+            cursor: pointer;
+            
+            &:hover{
+                svg {
+                    fill: $main-text-1;
+                }
+            }
+        }
+    }
+}
+
+.company{
+    &-activity{
+        overflow: hidden;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        position: relative;
+        min-height: 32.3rem;
+
+        &__h3{
+            width: 100%;
+            text-align: center;
+            font-family: $bold;
+            color: $dark-blue-text-1;
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2.4px;
+            padding-top: 4rem;
+        }
+
+        &__img{
+            max-width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: 768px){
+
+    .company{
+        &-activity{
+            padding-left: 0;
+            padding-right: 0;
+            min-height: auto;
+            position: relative;
+            border-bottom: none;
+
+            &__h3{
+                text-align: left;
+                padding-top: 0;
+                padding-left: 2.5rem;
+            }
+
+            &__slider-wrap{
+                width: calc(100% - 1.5rem);
+                margin-left: 2.5rem;
+            }
+
+            &__img{
+                padding-right: 1rem;
+                width: 100%;
+            }
+
+        }
+    }
+
+}
+
+@media screen and (min-width: 1200px){
+
+    .company{
+        &-activity{
+            padding-left: 0;
+            padding-right: 0;
+            max-width: 70vw;
+            width: 97rem;
+
+            &__slider-wrap{
+                width: 100%;
+                margin-left: 0;
+                overflow: hidden;
+            }
+
+            &__h3{
+                padding-left: 3rem;
+            }
+
+            &__link{
+                cursor: default;
+            }
+
+            &__img{
+                min-height: 24rem;
+            }
+            
+        }
+    }
+}

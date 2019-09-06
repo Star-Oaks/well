@@ -1,0 +1,14 @@
+<div class="company-activity">
+    <h3 class="company-activity__h3">{{data.header}}</h3>
+    <div class="company-activity__slider-wrap">
+      <ng-container>
+        <ngx-slick-carousel (afterChange)="afterChange($event)" (init)="slickInit($event)" class="carousel company-activity__slider" [config]="slideConfig">
+          <div ngxSlickItem *ngFor="let slide of data.companyPageSocialItems" class="company-activity__slide">
+            <a class="company-activity__link">
+              <img [src]="slide.bannerImageUrl" title="social" alt="social" class="company-activity__img">
+            </a>
+          </div>
+        </ngx-slick-carousel>
+      </ng-container>
+    </div>
+  </div>

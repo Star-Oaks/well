@@ -1,0 +1,46 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="company">
+  <div class="company-header company-banner"
+    [ngStyle]="{'background-image': (data.bannerImageUrl ? 'url(' + data.bannerImageUrl + ')' : '') }">
+
+    <div class="company-header__content">
+      <h1 class="company-header__h2">
+        {{data.bannerHeader}}
+      </h1>
+      <h5 class="company-header__h5">
+        {{data.bannerSubHeader}}
+      </h5>
+      <div class="company-header__promo-link">
+        <ng-container *ngIf="currentLang == 'ua'; else withLang">
+          <a target="_blank" [href]="'https://promo.krinitsa.com.ua/'">{{'about.viewPromo' | translate}}</a>
+        </ng-container>
+        <ng-template #withLang>
+          <a target="_blank"
+            [href]="'https://promo.krinitsa.com.ua/' + currentLang">{{'about.viewPromo' | translate}}</a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="company-history">
+    <div class="company-history__breadcrumbs">
+      <a class="company-history__breadcrumbs-item" [routerLink]="['/'] | localize">{{ 'home.name' | translate}}</a>
+      <a class="company-history__breadcrumbs-item"
+        [routerLink]="['/kompaniya'] | localize">{{'about.name' | translate}}</a>
+    </div>
+    <h3 class="company-history__h3">
+      {{data.header}}
+    </h3>
+    <div class=" company-history__text-wrap">
+      <div class=" text-container" [innerHtml]="data.text | sanitizeHtml"></div>
+
+    </div>
+  </div>
+
+  <app-our-awards *ngIf="awards" [data]="awards"></app-our-awards>
+  <app-our-values *ngIf="valueBlock" [data]="valueBlock"></app-our-values>
+  <app-our-membership *ngIf="orgBlock" [data]="orgBlock"></app-our-membership>
+  <app-our-activity *ngIf="socialBlock" [data]="socialBlock"></app-our-activity>
+  <app-our-clients></app-our-clients>
+  <app-subscribe></app-subscribe>
+  <app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>
+</div>

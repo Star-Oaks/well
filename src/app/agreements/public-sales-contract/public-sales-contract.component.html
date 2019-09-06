@@ -1,0 +1,15 @@
+<div class="public-contract">
+    <div class="public-contract__breadcrumbs">
+      <a class="public-contract__breadcrumbs-item" 
+      [routerLink]="['/'] | localize">{{ 'home.name' | translate}}</a>
+      <a class="public-contract__breadcrumbs-item" 
+      [routerLink]="['/agreements'] | localize">{{ 'agreements.publicContractName' | translate}}</a>
+    </div>
+    <h1 class="public-contract__h2">{{ 'agreements.publicContractName' | translate}}</h1>
+    <div class="text-container" [innerHtml]="data.text | sanitizeHtml"></div>
+  </div> 
+  <div class="bottom__lines"></div>
+  <app-our-clients></app-our-clients>
+  <app-subscribe></app-subscribe>
+  <app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>
+  

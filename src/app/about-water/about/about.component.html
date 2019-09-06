@@ -1,0 +1,52 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="about__water">
+  <div class="water__upper">
+    <nav class="water__upper__breadcrumbs ">
+      <a class="water__upper__breadcrumbs-item " [routerLink]="['/'] | localize">{{ 'home.name' | translate }}</a>
+      <a class="water__upper__breadcrumbs-item " [routerLink]="['/o-vode'] | localize">{{ 'water.name' | translate }}</a>
+    </nav>
+    <h1 class="water__upper-title">{{ data.header }}</h1>
+    <ngx-tabset *ngIf="tabs.length" class="water__tab">
+      <ngx-tab *ngFor="let tab of tabs; let i = index;" [active]="i === 0 ? true : false" [tabTitle]="tab.tabName">
+        <div class="water__contant">
+          <h3 class="water__subtitle">{{ tab.header }}</h3>
+          <div [innerHtml]="tab.text | sanitizeHtml" class="text-container">
+          </div>
+        </div>
+      </ngx-tab>
+    </ngx-tabset>
+    <div class="water__video-slider">
+      <div class="water__video">
+        <h3 class="water__video-h3">{{ data.subHeader }}</h3>
+        <div class="water__video__box">
+          <div class="water__video__grad">
+            <div class="water__video-conteiner" #player_container data-vimeo-defer data-vimeo-width="940">
+            </div>
+          </div>
+          <div *ngIf="videoPaused" class="water__video-paused">
+            <div class="water__video-img" (click)="playVideo()"></div>
+            <div class="water__video-conteiner__play" (click)="playVideo()">
+                <div class="water__video-conteiner__play-btn"></div>
+              </div> 
+          </div>
+        </div>
+      </div>
+      <div class="wrap-slider" >
+        <div class="water__slider">
+          <div class="water__slider-slide">
+            <ngx-slick-carousel (afterChange)="afterChange($event)" (init)="slickInit($event)" *ngIf="slides.length" class="about-water" [config]="slideConfig">
+              <div ngxSlickItem *ngFor="let slide of slides">
+                <h4 class="water__slider-slide__h4">{{ slide.header }}</h4>
+                <app-text-ellipsis class="water__slider-slide__p" [symbolLength]="symbolsAllowed" [textContent]="slide.text">
+                </app-text-ellipsis>
+              </div>
+            </ngx-slick-carousel>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

@@ -1,0 +1,16 @@
+<div class="after-payment__wrap">
+  <div class="after-payment__content">
+    <p *ngIf="paymentSuccess" class="after-payment__text">
+      {{ 'after-payment.paymentSuccess' | translate }}
+    </p>
+    <p *ngIf="!paymentSuccess" class="after-payment__text">
+      {{ 'after-payment.paymentError' | translate }}
+    </p>
+    <div class="after-payment__img-wrap">
+      <img class="after-payment__img" [src]="paymentStatusUrl">
+    </div>
+    <a class="after-payment__btn" [routerLink]="['/'] | localize">
+      <span class="after-payment__btn-text">{{ 'after-payment.toMain' | translate }}</span>
+    </a>
+  </div>
+</div>

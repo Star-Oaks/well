@@ -1,0 +1,111 @@
+<div class="order">
+
+  <div class="order__breadcrumbs">
+    <a [routerLink]="['/'] | localize" class="order__breadcrumbs-item">{{ 'home.name' | translate }} </a>
+    <a [routerLink]="['/', 'cart'] | localize" class="order__breadcrumbs-item">{{ 'order.name' | translate }}</a>
+  </div>
+  <h3 class="order__h3">
+    {{ 'order.yourOrder' | translate }}
+  </h3>
+
+  <form id="mainOrderForm" class="order__form" novalidate>
+    <div class="order__container" *ngFor="let item of cartItems; let i=index">
+      <div class="order__width">
+        <div class="order__wrap">
+          <div class="order__img-wrap">
+            <img class="order__img" [src]="item.productPhoto" alt="order-image">
+          </div>
+          <div class="order__description">
+            <div class="order__title">
+              <p>{{item.name}}</p>
+            </div>
+            <div class="order__counter-wrap">
+              <ng-container *ngIf="!item.isPackaging; else counterCount">
+                <app-counter class="order-item__counter" (minValueEvent)="showAdditional(i)"
+                  (currentValueChange)="getItemCount(i, $event)" [counterValue]="item.count" [counterRangeMax]="99"
+                  [counterRangeMin]="item.minOrderCount || 1">
+                </app-counter>
+              </ng-container>
+              <ng-template #counterCount>
+                <app-counter class="order-item__counter" (minValueEvent)="showAdditional(i)"
+                  (currentValueChange)="getItemCount(i, $event)" [counterValue]="item.count"
+                  [counterCount]="item.itemCount" [counterRangeMax]="item.itemCount * 100"
+                  [counterRangeMin]="item.itemCount || item.minOrderCount">
+                </app-counter>
+              </ng-template>
+              <ng-container [ngSwitch]="item.type">
+                <span *ngSwitchCase="PRODUCT_TYPES.pack" class="order-item__additional"
+                  [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                  {{'cart.minOrder' | translate }} {{item.count}}шт (1 упаковка)
+                </span>
+                <span *ngSwitchCase="PRODUCT_TYPES.thing" class="order-item__additional"
+                  [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                  {{'cart.minOrder' | translate }} {{item.count}}уп.
+                </span>
+                <span *ngSwitchCase="PRODUCT_TYPES.water" class="order-item__additional"
+                  [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                  {{'cart.minOrder' | translate }} {{item.count}}бут.
+                </span>
+                <span *ngSwitchCase="PRODUCT_TYPES.pc" class="order-item__additional"
+                  [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                  {{'cart.minOrder' | translate }} {{item.count}}шт.
+                </span>
+                <span *ngSwitchDefault class="order-item__additional" [ngStyle]="{'opacity' : item.additional ? '1' : '0'}">
+                  {{'cart.minOrder' | translate }} {{item.count}}шт.
+                </span>
+              </ng-container>
+            </div>
+          </div>
+          <span *ngIf="checkForIncludeInCart(item.urlName)"
+            class="order__tooltip name-tooltip" (click)="openTooltip($event)" #tooltip="tooltipDir"
+            tooltip="{{ defineProduct(item.urlName) | translate}}" [offset]="40" placement="custom-top" show-delay="300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <g id="info">
+                <path id="circled-i"
+                  d="M11.5 17a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-12a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zm.5 5v4h1v1h-3v-1h1v-3h-1v-1zm-1-2h1v1h-1z" />
+              </g>
+            </svg>
+          </span>
+        </div>
+
+        <div class="order__price-wrap">
+          <span class="order__price">{{item.price * item.count}}</span>
+          <span class="order__currency">{{ 'order.currency' | translate }}</span>
+          <span *ngIf="checkForIncludeInCart(item.urlName)"
+            class="order__tooltip price-tooltip" (click)="openTooltip($event)" #tooltip="tooltipDir"
+            tooltip="{{ defineProduct(item.urlName) | translate}}" [offset]="40" placement="custom-top" show-delay="300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <g id="info">
+                <path id="circled-i"
+                  d="M11.5 17a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-12a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zm.5 5v4h1v1h-3v-1h1v-3h-1v-1zm-1-2h1v1h-1z" />
+              </g>
+            </svg>
+          </span>
+
+        </div>
+      </div>
+      <button (click)="deleteItem(item.urlName)" class="order__delete"
+        style="background-image: url('assets/img/icons/close-sm-icon.png')"></button>
+    </div>
+  </form>
+
+  <div class="order__footer">
+    <div class="order-total__price-wrap">
+      <h5 class="order-total__h5">{{ 'order.toPay' | translate }}</h5>
+      <div class="order-total__price">
+        <span class="order-total__total">{{ totalCartPrice }}</span>
+        <span class="order-total__currency"> {{ 'order.currency' | translate }}</span>
+      </div>
+    </div>
+    <div class="order__submit">
+      <span class="order__additional">{{ 'cart.price' | translate}}</span>
+      <button *ngIf="!sending" (click)="sending = !sending" class="order__submit-btn" type="submit" form="cartModal"
+        (click)="submitOrder()">
+        <span class="order__btn-text">{{ 'order.checkout' | translate }}</span>
+      </button>
+      <div *ngIf="sending" class="order__btn-text order__checking">
+        {{ 'auth.sending' | translate }}<div><span>.</span><span>.</span><span>.</span></div>
+      </div>
+    </div>
+  </div>
+</div>

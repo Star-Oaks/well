@@ -1,0 +1,26 @@
+
+<div class="company-awards">
+    <div class="lines">
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="company-awards__static-wrap">
+      <h3 class="company-awards__h3">{{data.header}}</h3>
+      <div class="company-awards__text-wrap">
+        <p class="company-awards__paragraph">
+         {{data.text}}
+        </p>
+      </div>
+    </div>
+    <div class="company-awards__slider-wrap">
+      <ng-container>
+        <ngx-slick-carousel (afterChange)="afterChange($event)" (init)="slickInit($event)" class="carousel company-awards__slider" [config]="slideConfig">
+          <div ngxSlickItem *ngFor="let slide of data.companyPageAwardItems" class="company-awards__slide">
+            <a class="company-awards__item">
+              <img [src]="slide.imageUrl" class="company-awards__img" title="award" alt="award" width="100%">
+            </a>
+          </div>
+        </ngx-slick-carousel>
+      </ng-container>
+    </div>
+  </div>

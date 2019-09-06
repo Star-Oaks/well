@@ -1,0 +1,197 @@
+
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+::ng-deep ngx-slick-carousel.company-membership__slider{
+    padding-top: 9rem;
+    padding-bottom: 3rem;
+
+    .slick-slide{
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .slick-track, .slick-list{
+        height: 100%;
+    }
+
+    .slick-track{
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .slick-arrow {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.5rem;
+        svg {
+            fill: $main-text-05;
+        }
+        &:active {
+            svg {
+                fill: $main-text-1;
+            }
+        }
+    }
+    .slick-next {
+        top: 1.5rem;
+    }
+    .slick-prev {
+        top: 3.5rem;
+    }
+
+    @media screen and (min-width: 768px){
+        position: static;
+        height: 100%;
+        padding-top: 3.5rem;
+        padding-bottom: 4rem;
+
+        .slick-list, .slick-track{
+            height: 100%;
+        }
+
+        .slick-slide{
+            height: auto;
+        }
+
+        .slick-prev{
+            right: 0;
+            left: auto;
+            padding-right: 2.5rem;
+            top: 50%;
+            transform: translateY(calc(-50% + 1rem));
+        }
+        .slick-next{
+            right: 0;
+            left: auto;
+            padding-right: 2.5rem;
+            top: 50%;
+            transform: translateY(calc(-50% - 1rem));
+        }
+    }
+
+    @media screen and (min-width: 1200px){
+        margin-left: 0;
+        max-width: 100%;
+        padding-top: 10rem;
+        padding-bottom: 10.5rem;
+
+        .slick-prev{
+            padding-right: 0;
+        }
+        .slick-next{
+            padding-right: 0;
+        }
+
+        .slick-arrow {
+            cursor: pointer;
+            
+            &:hover{
+                svg {
+                    fill: $main-text-1;
+                }
+            }
+        }
+    }
+}
+
+.company{
+    &-membership{
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border-bottom: 1px solid $border-color-035;
+        position: relative;
+        min-height: 32.3rem;
+
+        &__h3{
+            width: 100%;
+            text-align: center;
+            font-family: $bold;
+            color: $dark-blue-text-1;
+            font-size: 1.2rem;
+            font-weight: 400;
+            padding-top: 3.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2.4px;
+        }
+
+        &__logo{
+            padding-bottom: 1rem;
+            
+            img{
+                max-width: 100%;
+                max-height: 6.5rem;
+            }
+        }
+
+        &__description{
+            max-width: 20rem;
+        }
+
+        &__description, &__description *{
+            color: $light-text-1;
+            font-family: $regular;
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 2.5rem;
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (min-width: 768px){
+
+    .company{
+        &-membership{
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+            min-height: auto;
+            position: relative;
+            border-bottom: none;
+
+            &__h3{
+                text-align: left;
+                padding-top: 4.7rem;
+            }
+
+            &__slider-wrap{
+                width: 81%;
+            }
+
+            &__logo{
+                padding-bottom: 4rem;
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width: 1200px){
+
+    .company{
+        &-membership{
+            padding-left: 3rem;
+            padding-right: 0;
+            max-width: 70vw;
+            width: 97rem;
+
+            &__h3{
+                padding-top: 6.75rem;
+            }
+
+            &__slider-wrap{
+                width: 95%;
+            }
+
+            &__logo{
+                padding-bottom: 2rem;
+                cursor: pointer;
+            }
+            
+        }
+    }
+}

@@ -1,0 +1,638 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+.order {
+    padding-top: 6rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+
+    &__wrap {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    &__breadcrumbs {
+        display: none;
+
+        a+a {
+            &::before {
+                content: "/\00a0";
+                display: inline-block;
+                padding-left: 0.5rem;
+                color: $blue-text-1;
+            }
+        }
+    }
+
+    &__breadcrumbs,
+    &__breadcrumbs * {
+        color: $blue-text-1;
+        font-family: $regular;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+
+    &__h2 {
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        padding-top: 4.7rem;
+        padding-bottom: 2.7rem;
+    }
+
+    &__h3 {
+        display: flex;
+        font-family: $bold;
+        color: $dark-blue-text-1;
+        font-size: 1.2rem;
+        font-weight: 400;
+        padding-top: 3.5rem;
+        padding-bottom: 2.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+    }
+
+    &__form {
+        position: relative;
+    }
+
+    &__container {
+        position: relative;
+        border-bottom: 1px solid $border-color-035;
+
+        &:first-child {
+
+            .order__img-wrap,
+            .order__description,
+            .order__description,
+            .order__price-wrap {
+                padding-top: 0;
+            }
+
+            .order__description+.order__tooltip {
+                margin: 0
+            }
+
+            .order__delete {
+                top: 0.6rem;
+            }
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__wrap {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__width {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__img {
+
+        max-width: 6.6rem;
+        max-height: 11rem;
+
+        &-wrap {
+            padding-top: 4rem;
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-width: 9rem;
+        }
+    }
+
+    &__title,
+    &__title * {
+        display: flex;
+        justify-content: space-between;
+        color: $main-text-1;
+        font-family: $regular;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 2.5rem;
+    }
+
+    &__comment {
+        padding-top: 0;
+    }
+
+    &__comment,
+    &__comment * {
+        color: $light-text-1;
+        font-family: $regular;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.2rem;
+    }
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        max-width: 65%;
+        padding-left: 1rem;
+        align-content: flex-start;
+        padding-bottom: 2rem;
+
+        app-counter {
+            padding-top: 0.5rem;
+            padding-bottom: 2.75rem;
+        }
+
+        &+.order__tooltip {
+            display: block;
+            margin-top: 4rem;
+        }
+    }
+
+    &__counter-wrap {
+        order: 2;
+        position: relative;
+    }
+
+    &__description,
+    &__price-wrap {
+        padding-top: 4rem;
+    }
+
+    &__price {
+        padding-right: 0.5rem;
+        line-height: 2.5rem;
+    }
+
+    &__additional {
+        color: $red-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        line-height: 18px;
+        transition: opacity 0.3s ease-in;
+    }
+
+    &-item {
+        &__additional {
+            color: $red-1;
+            font-family: $regular;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.6px;
+            line-height: 18px;
+            transition: opacity 0.3s ease-in;
+            position: absolute;
+            bottom: 3rem;
+            background-color: $white-1;
+            box-shadow: $header-shadow-04;
+            border-radius: 4px;
+            text-align: center;
+            padding: 1rem;
+            left: -4rem;
+            z-index: 100;
+            max-width: 21rem;
+        }
+    }
+
+    &__price,
+    &__price *,
+    &__currency,
+    &__currency * {
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+    }
+
+    &__delete {
+        display: block;
+        height: 2rem;
+        width: 2rem;
+        background-position: top left;
+        background-size: 9px 9px;
+        background-repeat: no-repeat;
+        border: none;
+        position: absolute;
+        left: 0;
+        top: 4.7rem;
+        background-color: transparent;
+    }
+
+    &__footer {
+        padding-bottom: 0;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        border-top: 1px solid $border-color-035;
+    }
+
+    &__submit {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &__checking {
+        cursor: default;
+        margin-bottom: 2.5rem;
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $dark-blue-text-1;
+
+        span {
+            animation-name: blink;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+            font-size: 2.4rem;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        span:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        span:nth-child(3) {
+            animation-delay: .4s;
+        }
+    }
+
+    &__additional {
+        color: $red-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        line-height: 18px;
+        transition: opacity 0.3s ease-in;
+    }
+
+    &__submit-btn {
+        display: flex;
+        height: 4.3rem;
+        width: 27.5rem;
+        border-radius: 2.1rem;
+        justify-content: center;
+        background-color: $red-1;
+        margin-bottom: 0;
+        margin-top: 4rem;
+        border: none;
+
+        &:active {
+            background-color: $dark-blue-text-1;
+        }
+    }
+
+    &__submit-btn * {
+        color: $white-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__btn-text {
+        text-align: center;
+    }
+
+    &-total {
+        &__h5 {
+            display: flex;
+            color: $dark-blue-text-1;
+            font-family: $bold;
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2.4px;
+            background-color: $white-1;
+            width: 100%;
+            z-index: 1;
+        }
+
+        &__price {
+            display: flex;
+            align-items: flex-start;
+
+            &-wrap {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+                width: 100%;
+            }
+        }
+
+        &__total {
+            display: flex;
+            color: $dark-blue-cost-1;
+            font-family: $bold;
+            font-size: 3rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            padding-right: 0.5rem;
+        }
+
+        &__currency {
+            display: flex;
+            color: $light-text-1;
+            font-family: $bold;
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.72px;
+            position: relative;
+            bottom: -0.7rem;
+        }
+    }
+
+    &__wrap-tooltip {
+        display: flex;
+
+    }
+
+    &__tooltip {
+        align-self: baseline;
+        width: 2.4rem;
+        height: 2.4rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            animation-name: blinker;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            animation-duration: 2s;
+        }
+    }
+
+}
+
+.price-tooltip {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .order {
+        position: relative;
+        max-width: 100%;
+        width: 100%;
+        padding-top: 9.3rem;
+        padding-right: 2.5rem;
+        padding-left: 2.5rem;
+
+        &__width {
+            max-width: 90%;
+        }
+
+        &__wrap {
+            width: 100%;
+            padding-right: 7.3rem;
+        }
+
+        &__container {
+
+            app-counter {
+
+                display: flex;
+                justify-content: flex-start;
+                padding-top: 0;
+                order: 2;
+                padding-bottom: 0;
+            }
+
+        }
+
+        &__breadcrumbs {
+            display: flex;
+            padding-top: 3rem;
+        }
+
+        &__h3 {
+            padding-bottom: 3rem;
+        }
+
+        &__description {
+            flex-direction: row;
+            // flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        &__counter-wrap {
+            margin-left: 3rem;
+            width: calc(35% - 3rem);
+        }
+
+        &-item {
+            &__additional {
+                bottom: auto;
+                top: -6rem;
+            }
+        }
+
+        &__title {
+            max-width: 65%;
+            width: 65%;
+            order: 1;
+        }
+
+        &__comment {
+            order: 3;
+            max-width: 65%;
+            width: 65%;
+        }
+
+        &__currency {
+            line-height: 2.5rem;
+        }
+
+        &__delete {
+            left: auto;
+            right: 0;
+            top: 4.7rem;
+        }
+
+        &__price,
+        &__currency {
+            font-size: 1.4rem;
+        }
+
+        &__price {
+            &-wrap {
+                display: flex;
+                min-width: 10rem;
+            }
+        }
+
+        &-total {
+            &__price {
+                position: relative;
+                bottom: -0.25rem;
+
+                &-wrap {
+                    padding-bottom: 2.5rem;
+                    padding-top: 2.5rem;
+                    align-items: flex-end;
+                }
+            }
+        }
+
+        &__submit {
+            flex-direction: row;
+            width: 100%;
+        }
+
+        &__submit-btn {
+            margin-top: 0;
+            max-width: 21.2rem;
+        }
+
+        &__additional {
+            max-width: 60%;
+        }
+
+        &__footer {
+            align-items: flex-end;
+            min-height: auto;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid $border-color-035;
+        }
+
+        &__tooltip {
+            margin-left: 1rem;
+
+        }
+
+        .name-tooltip {
+            display: none;
+        }
+    }
+
+    .price-tooltip {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .order {
+        max-width: 70vw;
+        width: 97rem;
+        padding-top: 9.7rem;
+        padding-left: 3rem;
+        padding-right: 0;
+
+        &__width {
+            max-width: 92.5%;
+        }
+
+        &__wrap {
+            width: 100%;
+            padding-right: 7.3rem;
+            padding-left: 0;
+        }
+
+        &__container {
+
+            app-counter {
+                width: 50%;
+            }
+        }
+
+        &__breadcrumbs {
+            cursor: pointer;
+            padding-top: 3rem;
+        }
+
+        &__h3 {
+            padding-top: 7.25rem;
+            padding-bottom: 3rem;
+        }
+
+        &__description {
+            padding-left: 3rem;
+        }
+
+        &__title {
+            max-width: 50%;
+            width: 50%;
+        }
+
+        &__comment {
+            max-width: 50%;
+            width: 50%;
+        }
+
+        &__delete {
+            right: 0;
+            cursor: pointer;
+        }
+
+        &-total {
+            &__price {
+                &-wrap {
+                    padding-top: 4rem;
+                    padding-bottom: 4.5rem;
+                    align-items: center;
+                }
+            }
+        }
+
+        &__additional {
+            max-width: 40%;
+        }
+
+        &__submit-btn {
+            margin-bottom: 0;
+            max-width: 21.2rem;
+
+            &:hover {
+                background-color: $dark-blue-text-1;
+            }
+        }
+
+        &__footer {
+            padding-bottom: 5rem;
+        }
+
+    }
+}
+
+
+@keyframes blinker {
+    from {
+        fill: $red-1
+    }
+
+    50% {
+        fill: #fff
+    }
+
+    to {
+        fill: $red-1
+    }
+}

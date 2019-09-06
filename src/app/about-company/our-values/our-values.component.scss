@@ -1,0 +1,309 @@
+
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+::ng-deep ngx-slick-carousel.company-values__slider{
+    padding-top: 8rem;
+    padding-bottom: 3.5rem;
+
+    .slick-arrow {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.5rem;
+        svg {
+            fill: $main-text-05;
+        }
+        &:active {
+            svg {
+                fill: $main-text-1;
+            }
+        }
+    }
+    // .slick-slide {
+    //     opacity: 1;
+    //     transition: opacity 100ms ease-in-out;
+    //  }
+    //  .slick-slide.opacidown {
+    //    opacity: 0;
+    //    transition: opacity 50ms ease-out;
+    //  }
+    .slick-next {
+        top: 1.5rem;
+    }
+    .slick-prev {
+        top: 3.5rem;
+    }
+
+    @media screen and (min-width: 768px){
+        position: static;
+        height: 100%;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .slick-list, .slick-track{
+            height: 100%;
+        }
+
+        .slick-slide{
+            height: auto;
+
+            &:nth-child(2n){
+                .company-values__title, .company-values__description{
+                    padding-left: 1rem;
+                }
+                .company-values__description{
+                    max-width: 20rem;
+                }
+            }
+        }
+
+        .slick-prev{
+            right: 0;
+            bottom: 8rem;
+            left: auto;
+            transform: none;
+            top: auto;
+            padding-right: 2.5rem;
+        }
+        .slick-next{
+            right: 0;
+            bottom: 10rem;
+            left: auto;
+            transform: none;
+            top: auto;
+            padding-right: 2.5rem;
+        }
+    }
+
+    @media screen and (min-width: 1200px){
+        margin-left: 0;
+        max-width: 100%;
+
+        .slick-slide{
+            padding-left: 0;
+
+            &:nth-child(2n){
+                padding-left: 0;
+
+                .company-values__title, .company-values__description{
+                    padding-left: 0rem;
+                }
+                .company-values__description{
+                    max-width: 22.5rem;                    
+                }
+            }
+        }
+        .slick-slide {
+            .company-values__slider-content {
+                padding-left: 4rem;
+            }
+            &:nth-child(2n){ 
+                .company-values__slider-content {
+                    padding-left: 4rem;
+                }
+            }
+        }
+
+        .slick-prev{
+            padding-right: 0;
+        }
+        .slick-next{
+            padding-right: 0;
+        }
+
+        .slick-arrow {
+            cursor: pointer;
+            
+            &:hover{
+                svg {
+                    fill: $main-text-1;
+                }
+            }
+        }
+    }
+}
+
+.company{
+    &-values{
+        padding-left: 2rem;
+        padding-right: 2rem;
+        border-bottom: 1px solid $border-color-035;
+        position: relative;
+        min-height: 39rem;
+
+        .lines {
+            display: none;
+        }
+
+        &__h3, &__title{
+            width: 100%;
+            text-align: center;
+            font-family: $bold;
+            color: $dark-blue-text-1;
+            font-size: 1.2rem;
+            font-weight: 400;
+            padding-top: 3.75rem;
+            padding-bottom: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2.4px;
+        }
+
+        &__title{
+            padding-top: 0;
+            padding-bottom: 2rem;
+        }
+
+        &__text-wrap, &__description, &__text-wrap *, &__description *{
+            color: $light-text-1;
+            font-family: $regular;
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 2.5rem;
+            text-align: center;
+        }
+
+    }
+}
+
+@media screen and (min-width: 768px){
+
+    .company{
+        &-values{
+            display: flex;
+            height: 37.3rem;
+            max-height: 37.3rem;
+            position: relative;
+            padding-left: 0;
+            padding-right: 0;
+
+            .lines {
+                position: absolute;
+                display: flex;
+                height: 100%;
+                z-index: -1;
+                justify-content: flex-start;
+                width: 100%;
+            }
+
+            .line {
+                flex: 0 0 calc(33.333% - .1rem);
+                height: 100%;
+
+                &:first-child {
+                    border-right: 1px solid $border-color-035;
+                }
+                &:nth-child(2) {
+                    border-right: 1px solid $border-color-035;
+                }
+            }
+
+            &__static-wrap{
+                width: 33.3333333%;
+                order: 2;
+                align-content: flex-start;
+                padding-right: 2.5rem;
+            }
+
+            &__text-wrap{
+                text-align: right;
+                padding-left: 2.6rem;
+            }
+
+            &__h3{
+                padding-top: 6.75rem;
+                padding-bottom: 3rem;
+            }
+
+            &__h3, &__text-wrap, &__text-wrap *{
+                text-align: right;
+            }
+
+            &__title{
+                line-height: 2.4rem;
+                padding-top: 6.1rem;
+                padding-bottom: 1.75rem;
+            }
+
+            &__title, &__description{
+                text-align: left;
+                max-width: 19rem;
+            }
+
+            &__slider-wrap{
+                padding-left: 2.5rem;
+                width: 66.6666666%;
+                order: 1;
+            }
+    
+            
+        }
+    }
+
+}
+
+@media screen and (min-width: 1200px){
+
+    .company{
+        &-values{
+            max-width: 70vw;
+            width: 97rem;
+            padding-right: 0;
+
+            .lines {
+                max-width: 70vw;
+                width: 97rem;
+            }
+
+            .line{
+                flex: 0 0 calc(33.333% + 0.6666rem);
+
+                &:nth-child(2) {
+                    flex: 0 0 calc(33.333% + 0.6666rem);
+                }
+            }
+
+            &__static-wrap{
+                padding-right: 0;
+            }
+
+            &__slider-wrap{
+                padding-left: 0;
+                width: 47.7vw;               
+            }
+
+            &__text-wrap{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            &__paragraph{
+                max-width: 20.5rem;
+            }
+
+            &__title{
+                max-width: 15rem;
+            }
+
+            &__description{
+                max-width: 22.5rem;
+            }
+
+        }
+    }
+}
+
+@media screen and (min-width: 1440px){
+
+    .company{
+        &-values{
+            &__slider-wrap{
+                padding-left: 0;
+                width: 65.8rem;           
+            }
+        }
+    }
+    
+}

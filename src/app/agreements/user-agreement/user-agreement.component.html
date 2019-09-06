@@ -1,0 +1,15 @@
+<div class="user-agreement">
+    <div class="user-agreement__breadcrumbs">
+      <a class="user-agreement__breadcrumbs-item" 
+        [routerLink]="['/'] | localize">{{ 'home.name' | translate}}</a>
+      <a class="user-agreement__breadcrumbs-item" 
+        [routerLink]="['/agreements'] | localize">{{ 'agreements.userAgreementName' | translate}}</a>
+    </div>
+    <h1 class="user-agreement__h2">{{ 'agreements.userAgreementName' | translate}}</h1>
+    <div class="text-container" [innerHtml]="data.text | sanitizeHtml"></div>
+  </div> 
+  <div class="bottom__lines"></div>
+  <app-our-clients></app-our-clients>
+  <app-subscribe></app-subscribe>
+  <app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>
+  

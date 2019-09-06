@@ -1,0 +1,40 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="corsico__wrap">
+  <div class="corsico__wrap-inner">
+    <div class="corsico__head">
+      <div class="corsico__head-img"
+        [ngStyle]="{'background-image': (data.logoUrl ? 'url(' + data.logoUrl + ')' : '') }">
+      </div>
+      <div class="corsico__head-info">
+        <h1 class="corsico__head-h2">{{ data.logoHeader }}</h1>
+        <p class="corsico__head-p">{{ data.logoText }}</p>
+        <button class="corsico__head-btn" gtagEvent trackOn="click" action="click" category="order-tasting-corsico"
+          [params]="{ event_label: 'Заказать дегустацию (кофе Corsico)' }"
+          (click)="openModal()">{{'corsico.degustation' | translate}}</button>
+      </div>
+    </div>
+    <div class="corsico__contant">
+      <div class="corsico__breadcrumbs">
+        <a class="corsico__crumbs" [routerLink]="['/'] | localize">{{ 'home.name' | translate }} </a>
+        <a class="corsico__crumbs" [routerLink]="['/o-kofe/kofe-corsico'] | localize">{{'corsico.name' | translate}}</a>
+      </div>
+      <h3 class="corsico__contant-h3">{{ data.logoHeader }}</h3>
+      <div [innerHtml]="data.coffeHeader | sanitizeHtml" class="text-container">
+      </div>
+      <div class="corsico__contant-img"
+        [ngStyle]="{'background-image': (data.imgPageUrl ? 'url(' + data.imgPageUrl + ')' : '') }">
+      </div>
+      <div [innerHtml]="data.coffeText | sanitizeHtml" class="text-container">
+      </div>
+      <h3 class="corsico__machine-h3 corsico__contant-h3">{{ data.machineHeader }}</h3>
+      <div [innerHtml]="data.machineText | sanitizeHtml" class="text-container">
+      </div>
+      <a [routerLink]="['/catalog', 'cofe', 'corsico'] | localize"
+        class="corsico__machine-btn corsico__head-btn btn-too">{{'corsico.catalogue' | translate}}</a>
+    </div>
+  </div>
+
+</div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

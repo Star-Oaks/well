@@ -1,0 +1,17 @@
+<div class="company-membership">
+  <h3 class="company-membership__h3">{{data.header}}</h3>
+  <div class="company-membership__slider-wrap">
+    <ng-container>
+      <ngx-slick-carousel (afterChange)="afterChange($event)" *ngIf="data.companyPageOrganizationsItems.length" (init)="slickInit($event)" class="carousel company-membership__slider" [config]="slideConfig">
+        <div ngxSlickItem  *ngFor="let slide of data.companyPageOrganizationsItems" class="company-membership__slide">
+          <a [href]="slide.href" target="_blank" class="company-membership__logo">
+            <img [src]="slide.imageUrl" title="organization" alt="organization">
+          </a>
+          <p class="company-membership__description">
+            {{slide.header}}
+          </p>
+        </div>
+      </ngx-slick-carousel>
+    </ng-container>
+  </div>
+</div>
