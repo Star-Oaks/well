@@ -1,0 +1,22 @@
+User-agent: * 
+    Disallow: /*utm_ 
+    Disallow: /*gclid= 
+    Disallow: /*search 
+    Disallow: /*cart   
+    Disallow: /*kabinet   
+User-agent: Googlebot 
+    Disallow: /*utm_ 
+    Disallow: /*gclid= 
+    Disallow: /*search 
+    Disallow: /*cart
+    Disallow: /*kabinet
+User-agent: Yandex 
+    Disallow: /*utm_ 
+    Disallow: /*gclid= 
+    Disallow: /*search 
+    Disallow: /*cart
+    Disallow: /*kabinet 
+    Disallow: /*img 
+User-agent: YandexImages 
+    Disallow: / 
+    Allow: */img/
