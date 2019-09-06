@@ -1,0 +1,169 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+::ng-deep app-text-ellipsis.link p {
+    cursor: pointer;
+}
+
+.article {
+    margin-top: 6rem;
+    padding: 0 2rem;
+    &__breadcrumbs {
+        display: none;
+        a+a {
+            &::before {
+                content: "/\00a0";
+                display: inline-block;
+                padding-left: 0.5rem;
+                color: $blue-text-1;
+            }
+            p {
+                cursor: pointer;
+            }
+        }
+        a:last-child {
+            display: flex;
+        }
+    }
+    &__breadcrumbs,
+    &__breadcrumbs * {
+        color: $blue-text-1;
+        font-family: $regular;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+    &__h5 {
+        padding-top: 2.5rem;
+        padding-bottom: 3rem;
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 24px;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+    }
+    &__h6 {
+        padding: 14px 0;
+        color: $main-text-1;
+        font-family: $regular;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 25px;
+    }
+    .article__text {
+        p {
+            padding: 12px 0;
+            /* Style for "За два год" */
+            color: $blue-text-1;
+            font-family: $regular;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 25px;
+        }
+        ul {
+            padding: 1.2rem 0 0 0;
+            li {
+                list-style: none;
+                color: $blue-text-1;
+                font-family: $regular;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 25px;
+            }
+            li::before {
+                content: "-";
+            }
+        }
+        ul+p {
+            padding-top: 0px;
+        }
+        a {
+            span {
+                color: $red-1;
+            }
+        }
+    }
+    &__wrap {
+        .article__wrap-photo {
+            position: relative;
+            margin-bottom: 1rem;
+            img {
+                width: 100%;
+            }
+            &::after {
+                top: 0;
+                left: 0;
+                bottom: 3px;
+                position: absolute;
+                content: "";
+                width: 100%;
+                background-image: linear-gradient(to top, rgba(2, 49, 64, 0.5) 0%, rgba(2, 49, 64, 0.5) 34%, rgba(18, 124, 223, 0.5) 100%);
+                opacity: 0.4;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .article {
+        padding: 0 2.5rem 50px 2.5rem;
+        &__h5 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            text-align: left;
+        }
+        margin-top: 9.7rem;
+        padding: 0 2.5rem;
+        &__breadcrumbs {
+            display: flex;
+            padding-top: 2.5rem; // padding-bottom: 3.5rem;
+        }
+        .article__wrap {
+            display: flex;
+            align-items: center;
+            img {
+                width: 31rem;
+            }
+            h6 {
+                padding: 0 2rem;
+            }
+        }
+    }
+    .bottom__lines {
+        // max-width: 97rem;
+        padding: 0;
+        border-bottom: 1px solid $border-color-035;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .article {
+        margin-top: 9.7rem;
+        padding: 0 0 5.7rem 3rem;
+        width: 97rem;
+        max-width: 70vw;
+        &__h5 {
+            padding-top: 4rem;
+            padding-bottom: 5.5rem;
+            text-align: left;
+        }
+        .article__wrap {
+            display: flex;
+            align-items: flex-start;
+            img {
+                width: 31rem;
+            }
+            h6 {
+                padding: 0 0 0 6rem;
+            }
+        }
+    }
+    .bottom__lines {
+        width: 97rem;
+        max-width: 70vw;
+        padding: 0;
+        border-bottom: 1px solid $border-color-035;
+    }
+}

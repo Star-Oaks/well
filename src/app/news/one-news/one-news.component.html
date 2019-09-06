@@ -1,0 +1,33 @@
+<ngx-json-ld [json]="schemaBreadgrams"></ngx-json-ld>
+<div class="one__news">
+  <div class="one__news-head">
+    <div class="one__news__breadcrumbs">
+      <a class="one__news__breadcrumbs-item" [routerLink]="['/'] | localize">{{ 'home.name' | translate }}</a>
+      <a class="one__news__breadcrumbs-item" [routerLink]="['/novosti'] | localize">{{ 'news.name' | translate }}</a>
+      <a class="one__news__breadcrumbs-item" 
+        [routerLink]="['/novosti', data.urlName] | localize">
+          <app-text-ellipsis
+            [symbolLength]="symbolsAllowed" 
+            [textContent]="data.header"
+            [link]="true"
+            >
+          </app-text-ellipsis>
+      </a>
+    </div>
+    <h1 class="one__news-title">{{ data.header }}</h1>
+    <p class="one__news-date">{{ data.publishDate | date: 'dd.MM.yy' }}</p>
+  </div>
+  <div class="one__news-info">
+    <div class="one__news-info-box">
+      <img class="one__news-info-box-img" 
+      [src]="data.thumbnailImageUrl" [alt]="data.header" [title]="data.header"/>
+      <div class="one__news-info-box_mask"></div>
+    </div>
+    <h4 class="one__news-info_h4">{{ data.subheader }}</h4>
+  </div>
+  <div [innerHtml]="data.description | sanitizeHtml" class="one__news-p text-container-light one__news-text ">
+  </div>
+</div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

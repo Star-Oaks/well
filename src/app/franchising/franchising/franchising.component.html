@@ -1,0 +1,22 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="franchising">
+  <div class="franchising__breadcrumbs">
+    <a class="franchising__breadcrumbs-item" [routerLink]="['/'] | localize">{{ 'home.name' | translate}}</a>
+    <a class="franchising__breadcrumbs-item" [routerLink]="['/franchising'] | localize">{{ 'franchising.name' | translate}}</a>
+  </div>
+  <h1 class="franchising__h2">{{data.header}}</h1>
+  <div [innerHtml]="data.body | sanitizeHtml" class="text-container"> 
+  </div>
+  <h2 class="franchising__subheader" [@visibilityChanged]="visiblityState">{{data.subHeader}}:</h2>
+  <h2 class="franchising__subheader" [@visibilityChanged]="visiblityState2">{{ 'franchising.success' | translate}}</h2>
+  <div *ngIf="!sendState" class="franchising__form" [@visibilityChanged]="visiblityState" [formGroup]="form" name="add_franchizy">
+    <input class="franchising__form-input"  formControlName="city" type="text"  [placeholder]="'franchising.city' | translate">
+    <input class="franchising__form-input" formControlName="phoneNumber" type="tel"  [placeholder]="'franchising.phone' | translate">
+    <input class="franchising__form-input"  formControlName="email" type="email"  [placeholder]="'Ваш E-mail' | translate">
+    <input class="franchising__form-btn" type="button" (click)="checkout()" [value]="'franchising.send' | translate">
+  </div>
+</div> 
+<div class="bottom__lines"></div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

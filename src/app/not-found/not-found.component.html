@@ -1,0 +1,15 @@
+<div class="not-found">
+    <div class="not-found__breadcrumbs">
+        <div class="not-found__breadcrumbs-btn"></div>
+        <a class="not-found__breadcrumbs-link" [routerLink]="['/' | localize]">{{ 'not-found.backToHome' | translate }}</a>
+    </div>
+    <div class="not-found__container">
+        <div class="not-found__box">
+            <h1 class="not-found__box-title">{{ 'not-found.error' | translate }}</h1>
+            <p class="not-found__box-item">{{ 'not-found.pageNotFound' | translate }}</p>
+            <a class="not-found__btn" [routerLink]="['/' | localize]">{{ 'not-found.backToHome' | translate }}</a>
+        </div>
+    </div>
+</div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>

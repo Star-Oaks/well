@@ -1,0 +1,7 @@
+<app-header *ngIf="dataHome" [data]="dataHome.mainPageBannerItem" [phone]="phone"></app-header>
+<app-slider *ngIf="dataHome" [data]="dataHome.mainPageSliderItems"></app-slider>
+<app-best-deals *ngIf="dataHomeBest" [data]="dataHomeBest"></app-best-deals>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>
+<app-popular-request *ngIf="dataHome.seoLink" [links]="dataHome.seoLink.seoLinkRefs"></app-popular-request>

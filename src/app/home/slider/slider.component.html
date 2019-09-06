@@ -1,0 +1,16 @@
+<div class="slider">
+  <div class="slider__wrap">
+    <ngx-slick-carousel  (afterChange)="afterChange($event)" (init)="slickInit($event)" class="home-slider" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let slide of slides" class="slider__slide">
+        <a [attr.href]="slide.link ? slide.link : undefined" target="_blank" class="slider__item" [ngStyle]="{'background-image': slide?.bannerImageUrl ? 'url(' + slide?.bannerImageUrl + ')' : '' }">
+          <div class="slider__text">
+            <h5 class="slider__h5">{{slide.header}}</h5>
+            <h4 class="slider__h4">
+                {{slide.subHeader}}
+            </h4>
+          </div>
+        </a>
+      </div>
+    </ngx-slick-carousel>
+  </div>
+</div>

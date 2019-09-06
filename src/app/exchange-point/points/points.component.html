@@ -1,0 +1,38 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="points">
+  <div class="points__breadcrumbs">
+    <a class="points__breadcrumbs-item" [routerLink]="['/'] | localize">{{ 'home.name' | translate}}</a>
+    <a class="points__breadcrumbs-item" [routerLink]="['/tochki'] | localize">{{'points.name' | translate}}</a>
+  </div>
+  <h1 class="points__h2">{{data.header}}</h1>
+  <p class="points__p">{{data.subHeader}}
+  </p>
+  <agm-map class="points__map" [latitude]="data.lattitude" [longitude]="data.longitude" [styles]="mapStyles"
+    [zoom]="zoom">
+    <agm-marker *ngFor="let item of data.dots; let i = index" [latitude]="item.lattitude" [longitude]="item.longitude"
+      [iconUrl]="icon" (markerClick)="openWindow(item.id)">
+      <agm-info-window [maxWidth]="230" class="window-map" [isOpen]="isInfoWindowOpen(item.id)"
+        [latitude]="item.lattitude" [longitude]="item.longitude">
+        <div class="window-map__wrap">
+          <img class="window-map__wrap-photo" src={{item.photoUrl}} alt="photo-point">
+          <div class="window-map__wrap-info">
+            <div class="info-district">{{item.name}}</div>
+            <div class="info-schedule">
+              <span class="info-schedule__days">{{'points.point' | translate}}</span>
+              <span class="info-schedule__time">{{item.adress}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="window-map__text">
+          <div class="window-map__price">{{item.text}}</div>
+          <div class="window-map__shares">{{item.shares}}</div>
+        </div>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+
+</div>
+<div class="bottom__lines"></div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

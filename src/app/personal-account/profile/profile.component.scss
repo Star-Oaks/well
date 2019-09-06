@@ -1,0 +1,280 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+// input.ng-touched.ng-invalid {
+//     border: 1px solid $red-05;
+//     box-shadow: 0 0 6px 0px $red-05;
+// }
+
+
+
+.profile {
+    &__data {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__h4 {
+        color: $blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        margin-top: 3rem;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        padding-top: 2.5rem;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        color: $lighten-text-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        padding: 1rem 3rem 0.7rem;
+    }
+
+    &__input {
+        width: 28rem;
+        height: 4.4rem;
+        box-shadow: $input-shadow-006;
+        border-radius: 22px;
+        background-color: $white-1;
+        border: 1px solid $input-border-006;
+        outline: none;
+        color: $dark-blue-text-1;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        padding: 0 3.2rem;
+        margin: 0.8rem 0;
+        display: inline-block;
+        appearance: none;
+        transition: box-shadow 0.5s linear;
+        input {
+            border: none;
+            outline: none;
+            min-height: 4.4rem;
+            background-color: transparent;
+            &::placeholder {
+                color: $dark-blue-text-1;
+                font-family: $regular;
+                font-size: 1.2rem;
+                font-weight: 300;
+                letter-spacing: 0.6px;
+            }
+        }
+        &.error {
+            box-shadow: 0 0 1px 1px $red-1;
+        }
+
+        &-error {
+            display: flex;
+            justify-content: center;
+            max-width: 28rem;
+
+            span {
+                max-width: 28rem;
+                display: inline-block;
+                padding: 0 3.2rem;
+                font-family: $regular;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 12px;
+                color: $red-1;
+                text-align: center;
+            }
+        }
+    }
+
+    &__btn {
+        width: 28rem;
+        height: 4.4rem;
+        margin: 2rem 0 0;
+        border-radius: 22px;
+        font-family: $regular;
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.6px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        box-shadow: $button-shadow-018;
+        background-color: $red-1;
+        color: $white-1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:active {
+            background-color: $dark-blue-text-1;
+        }
+    }
+    &__checking {
+        margin-bottom: 2.5rem;
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $dark-blue-text-1;
+        width: 28rem;
+        span {
+            animation-name: blink;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+            font-size: 2.4rem;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        span:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        span:nth-child(3) {
+            animation-delay: .4s;
+        }
+        &.text-save {
+            color: $red-1;
+        }
+    }
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: inherit;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+
+@media screen and (min-width: 768px) {
+
+    .profile {
+        display: flex; // padding: 0 2.5rem;
+        width: 97rem;
+        max-width: 70vw;
+        padding-bottom: 7rem;
+
+        &__pass {
+            margin-left: 15rem;
+        }
+
+        &__h4 {
+            margin-top: 5rem;
+        }
+
+        &__input {
+            margin: 1rem 0;
+        }
+
+        &__btn {
+            margin: 2.5rem 0 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .profile {
+        display: flex;
+        justify-content: space-between; // max-width: 87rem;
+        padding-left: 3rem;
+
+        &__pass {
+            margin-left: 0rem; // margin-right: 0rem;
+        }
+
+        &__field {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__save {
+            align-self: flex-end;
+
+            &-btn {
+                width: 25rem;
+            }
+        }
+
+        &__h4 {
+            margin-top: 6.5rem;
+        }
+
+        &__label {
+            padding: 1rem 2.5rem 0.7rem 0rem;
+        }
+
+        &__input {
+            width: 25rem;
+            padding: 0 2.2rem;
+
+            &-error {
+                max-width: 100%;
+                justify-content: flex-end;
+
+                span {
+                    width: 25rem;
+                    padding: 0 2.2rem;
+                }
+            }
+        }
+
+        &__btn {
+            &:hover {
+                background-color: $dark-blue-text-1;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+
+    .profile {
+        &__pass {
+            margin-left: 0rem;
+            margin-right: 2.5rem;
+        }
+
+        &__field {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__save {
+            align-self: flex-end;
+
+            &-btn {
+                width: 28rem;
+            }
+        }
+
+        &__label {
+            padding: 1rem 2.5rem 0.7rem 0rem;
+        }
+
+        &__input {
+            width: 28rem;
+            padding: 0 3.2rem;
+        }
+    }
+}

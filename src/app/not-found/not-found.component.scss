@@ -1,0 +1,127 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+.not-found {
+    margin-top: 6.4rem;
+    padding: 3rem 2.2rem 0 2.2rem;
+
+    &__breadcrumbs {
+        display: flex;
+
+        &-btn {
+            margin-left: 8px;
+            margin-right: 8px;
+            position: relative;
+        }
+
+        &-btn::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 2px;
+            border: 5px solid transparent;
+            border-right: 8px solid #b2c0cc;
+        }
+
+        &-link {
+            display: block;
+            color: #95abb8;
+            font-family: $regular;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+    }
+
+    &__container {
+        padding: 3rem 0;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        min-height: calc(100vh - 6.4rem);
+        justify-content: center;
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &-title {
+            padding-bottom: 5rem;
+            color: #425d70;
+            font-family: $bold;
+            font-size: 2.4rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 4.8px;
+        }
+
+        &-item {
+            color: #425d70;
+            font-family: $bold;
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2.4px;
+            line-height: 18px;
+            text-align: center;
+            max-width: 45rem;
+        }
+    }
+
+    &__btn {
+        margin: 5rem 0 3rem 0;
+        width: 27.6rem;
+        min-height: 4.4rem;
+        border: none;
+        border-radius: 2.2rem;
+        background-color: #3a5465;
+        color: #ffffff;
+        font-family: $regular;
+        font-size: 1.4rem;
+        font-weight: 300;
+        letter-spacing: 0.7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+    .not-found {
+        margin-top: 9.4rem;
+
+        &__container {
+            min-height: calc(100vh - 9.4rem);
+        }
+
+        &__box {
+            &-title {
+                padding-bottom: 3.6rem;
+            }
+
+        }
+
+        &__btn {
+            margin-top: 4.3rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .not-found {
+        margin-top: 9.7rem;
+
+        &__container {
+            min-height: calc(100vh - 9.7rem);
+        }
+
+        &__btn:hover {
+            background-color: $red-1;
+        }
+    }
+}

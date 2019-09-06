@@ -1,0 +1,196 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+.one__news {
+    padding: 2rem 2rem 0 2rem;
+    margin-top: 6.4rem;
+    &__breadcrumbs {
+        display: none;
+        a+a {
+            &::before {
+                content: "/\00a0";
+                display: inline-block;
+                padding-left: 0.5rem;
+                color: $blue-text-1;
+            }
+        }
+    }
+    &-title {
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 2.4rem;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+    }
+    &-date {
+        padding: 1rem 0 3rem 0;
+        color: $red-1;
+        font-family: $regular;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+    &-info {
+        display: flex;
+        flex-direction: column;
+        &-box {
+            width: 100%;
+            position: relative;
+            &-img {
+                width: 100%;
+                height: 100%;
+            }
+            &_mask {
+                top: 0;
+                left: 0;
+                bottom: 3px;
+                position: absolute;
+                width: 100%;
+                background-color: $under-mask;
+                opacity: 0.4;
+            }
+        }
+        &_h4 {
+            color: $main-text-1;
+            font-family: $regular;
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 2.5rem;
+            padding-top: 2.5rem;
+            padding-bottom: 2rem;
+        }
+    }
+    &-p {
+        color: $blue-text-1;
+    }
+    h5 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 24px;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+    }
+    h6 {
+        padding: 14px 0;
+        color: $main-text-1;
+        font-family: $regular;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 25px;
+    }
+    &-p {
+        padding-top: 0;
+    }
+    ul {
+        padding: 1.2rem 0 0 0;
+        li {
+            list-style: none;
+            color: $blue-text-1;
+            font-family: $regular;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 25px;
+        }
+        li::before {
+            content: "-";
+        }
+    }
+    ul+p {
+        padding-top: 0px;
+    }
+    span {
+        a {
+            color: $red-1;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .one__news {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        margin-top: 9.4rem;
+        padding-top: 0;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid $border-color-035;
+        &__breadcrumbs {
+            padding: 3rem 0 3rem 0;
+            display: flex;
+            color: $blue-text-1;
+            font-family: $regular;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            &-item:visited {
+                color: $blue-text-1;
+            }
+            app-text-ellipsis {
+                display: inline-block;
+                color: $blue-text-1;
+                font-family: $regular;
+                font-size: 1rem;
+                font-weight: 700;
+                letter-spacing: 2px;
+            }
+        }
+        &-date {
+            padding: 1rem 0 2.75rem 0;
+        }
+        &-info {
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-bottom: 2.2rem;
+            &-box {
+                width: 32.9rem;
+            }
+            &_h4 {
+                width: 60%;
+                padding: 0 0 0 2rem;
+            }
+        }
+        &-p {
+            padding-bottom: 2.5rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .one__news {
+        max-width: 70vw;
+        width: 97rem;
+        margin-top: 9.7rem;
+        padding-top: 0;
+        padding-left: 3rem;
+        padding-bottom: 3.7rem;
+        &-info {
+            &-box {
+                width: 31rem;
+            }
+            &_h4 {
+                width: 62%;
+                padding: 0 0 0 6rem;
+            }
+        }
+        &-title {
+            padding-top: 0.7rem;
+        }
+        &-text {
+            padding-left: 0;
+            padding-top: 2.3rem;
+        }
+        &__breadcrumbs {
+            line-height: 2rem;
+            padding: 2.5rem 0 3rem 0;
+        }
+        &-date {
+            padding: 1.3rem 0 3rem 0;
+        }
+    }
+}

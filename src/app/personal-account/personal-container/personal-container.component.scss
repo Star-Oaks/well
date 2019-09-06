@@ -1,0 +1,183 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+.personal {
+    &__wrap {
+        padding-top: 6rem;
+    }
+    &__breadcrumbs {
+        display: none;
+    }
+    &__header {
+        padding: 0 2rem;
+    }
+    &__h2 {
+        text-transform: uppercase;
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 2.4rem;
+        letter-spacing: 2.4px;
+        padding-top: 3.6rem;
+        padding-bottom: 2rem;
+    }
+    &__tabs {
+        padding: 0 2rem;
+    }
+}
+
+::ng-deep ngx-tabset.personal__tabset {
+    .nav-tabset {
+        border-top: 1px solid $border-color-035;
+        border-bottom: 1px solid $border-color-035;
+        display: inline-flex;
+        flex-wrap: wrap;
+        padding-bottom: 1.7rem;
+    }
+    .nav-tabset:not(.disable-style) .nav-tab {
+        padding: 0;
+        border: none;
+        padding: 0;
+        margin: 1.5rem 1.8rem 0 0.1rem;
+    }
+    .nav-tab {
+        color: $blue-text-1;
+        font-family: $regular;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        &.active {
+            color: $red-1;
+            border: none;
+        }
+    }
+}
+
+.bottom__lines {
+    display: block;
+    padding: 0;
+    //border-bottom: 1px solid $border-color-035;
+}
+
+@media screen and (min-width: 768px) {
+    .personal {
+        &__wrap {
+            padding-top: 10rem;
+        }
+        &__breadcrumbs {
+            display: block;
+            font-family: $regular;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: $light-blue-text-1;
+            margin-top: 3rem;
+            a+a {
+                &::before {
+                    content: "/\00a0";
+                    display: inline-block;
+                    padding-left: 0.5rem;
+                    color: $light-blue-text-1;
+                }
+            }
+        }
+        &__breadcrumbs,
+        &__breadcrumbs * {
+            color: $blue-text-1;
+            font-family: $regular;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        &__h2 {
+            padding-top: 2.3em;
+            padding-bottom: 2.3rem;
+        }
+        &__tabs {
+            padding: 0 2.5rem;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .personal {
+        &__wrap {
+            padding-top: 9.4rem;
+        }
+        &__breadcrumbs {
+            display: block;
+            font-family: $regular;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: $light-blue-text-1;
+            a+a {
+                &::before {
+                    content: "/\00a0";
+                    display: inline-block;
+                    padding-left: 0.5rem;
+                    color: $light-blue-text-1;
+                }
+            }
+        }
+        &__breadcrumbs,
+        &__breadcrumbs * {
+            color: $blue-text-1;
+            font-family: $regular;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        &__header {}
+        &__h2 {}
+        &__tabs {
+            padding: 0 2.5rem;
+        }
+    }
+    ::ng-deep ngx-tabset.personal__tabset {
+        .nav-tabset {}
+        .nav-tabset:not(.disable-style) .nav-tab {}
+        .nav-tab {
+            &.active {}
+        }
+    }
+    .bottom__lines {
+        // margin:0 2.5rem;
+        // max-width: 70vw;
+        // max-width: 97rem;
+        padding: 0;
+        border-bottom: 1px solid $border-color-035;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .personal {
+        &__wrap {}
+        &__header {
+            padding: 0 3rem;
+        }
+        &__h2 {
+            padding-top: 7rem;
+        }
+        &__tabs {
+            padding: 0rem;
+        }
+    }
+    ::ng-deep ngx-tabset.personal__tabset {
+        .nav-tabset {
+            margin-left: 3rem;
+        }
+        .nav-tabset:not(.disable-style) .nav-tab {}
+        .nav-tab {
+            &.active {}
+        }
+    }
+    .bottom__lines {
+        // margin:0 2.5rem;
+        max-width: 70vw;
+        max-width: 97rem;
+        padding: 0;
+        border-bottom: 1px solid $border-color-035;
+    }
+}

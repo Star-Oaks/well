@@ -1,0 +1,223 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+
+.banner {
+    margin-top: 6rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: calc(100vh - 6rem);
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem 2.5rem;
+    justify-content: space-between;
+    background-color: $company-banner-color;
+
+    &__info {
+        margin: auto;
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    &__h5 {
+        color: $white-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        padding: 1rem 0;
+    }
+
+    &__h2 {
+        color: $white-1;
+        font-family: $extrabold;
+        font-size: 3.5rem;
+        font-weight: 400;
+        line-height: 48px;
+        text-transform: uppercase;
+        letter-spacing: 1.75px;
+        max-width: 40rem;
+    }
+
+    &__btn {
+        margin-top: 3.3rem;
+        border-radius: 2.2rem;
+        background-color: $red-1;
+        width: 16.2rem;
+        height: 4.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &-text {
+            cursor: pointer;
+            color: $white-1;
+            font-family: $light;
+            font-size: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 0.7px;
+        }
+
+        &:active {
+            background-color: $dark-blue-text-1;
+        }
+    }
+
+    &__bottom {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__shares {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+
+        span {
+            color: $white-1;
+            font-family: $bold;
+            font-size: 1.2rem;
+            font-weight: 400;
+            padding: 0.5rem;
+            text-transform: uppercase;
+            margin-top: 0.4rem;
+        }
+
+        &-icon {
+            display: block;
+            // background-image: url(assets/img/icons/gift.png);
+            // background-position: center;
+            // background-size: cover;
+            // background-repeat: no-repeat;
+            width: 1.8rem;
+            height: 2rem;
+            margin-right: 1rem;
+
+            svg {
+                fill: $white-1;
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+    }
+
+    &__phone {
+        position: relative;
+        overflow: hidden;
+        width: 4.1rem;
+        height: 4.1rem;
+        border-radius: 20px;
+        white-space: nowrap;
+        background-color: $dark-blue-bg-1;
+
+        &-btn {
+            background-color: $dark-blue-bg-1;
+            height: 4.1rem;
+            width: 4.1rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+
+            svg {
+                fill: $white-1;
+                width: 1.8rem;
+            }
+        }
+
+        &-link {
+            width: 100%;
+            height: 4.1rem;
+            display: flex;
+            align-items: center; // justify-content: center;
+            padding-left: 2rem;
+            white-space: nowrap; // padding: 1.3rem 0 1rem 2rem;
+            z-index: 1;
+            transition: all .5s;
+            color: $white-1;
+            font-family: $bold;
+            font-size: 1.2rem;
+            font-weight: 400;
+
+            &:active {
+                color: $red-1;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .banner {
+        height: calc(100vh - 9.4rem);
+        margin-top: 9.4rem;
+
+        &__h2 {
+            max-width: 42rem;
+            margin: 0 auto 0 7.5rem;
+            font-size: 4.5rem;
+            line-height: 60px;
+            letter-spacing: 2.25px;
+        }
+
+        &__h5 {
+            margin: 0 auto 0 7.5rem;
+            font-size: 1.6rem;
+            letter-spacing: 3.2px;
+        }
+
+        &__btn {
+            margin: 3.5rem auto 0 7.5rem;
+        }
+
+        &__bottom {
+            margin-top: 1.7rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .banner {
+        margin: 0;
+        height: 100vh;
+
+        &__h5 {
+            margin: 14rem auto 0 7.5rem;
+            font-size: 1.6rem;
+            letter-spacing: 3.2px;
+        }
+
+        &__phone {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            z-index: 10;
+        }
+
+        &__btn {
+            &:hover {
+                background-color: $dark-blue-text-1;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .banner {
+        &__phone {
+            right: calc((100vw - 1440px)/2 + 1.5rem);
+        }
+    }
+}

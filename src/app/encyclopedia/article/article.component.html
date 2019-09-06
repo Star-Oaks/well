@@ -1,0 +1,29 @@
+<section class="article">
+  <div class="article__breadcrumbs">
+    <a  [routerLink]="['/'] | localize" class="article__breadcrumbs-item">{{ 'home.name' | translate }}</a>
+    <a  [routerLink]="['/encyclopedia'] | localize" class="article__breadcrumbs-item">{{ 'encyclopedia.name' | translate }}</a>
+    <a  [routerLink]="['/encyclopedia', data.urlName] | localize" 
+        class="article__breadcrumbs-item">
+          <app-text-ellipsis class="link" 
+            [symbolLength]="symbolsAllowed" 
+            [textContent]="data.header"
+            [link]="true"
+            >
+          </app-text-ellipsis>
+    </a>
+  </div>
+  <h1 class="article__h5">{{ data.header }}</h1>
+  <div class="article__wrap">
+    <div class="article__wrap-photo">
+      <img [src]="data.smallImageUrl" [alt]="data.header" [title]="data.header">
+    </div>
+    <h6 class="article__h6">{{ data.subheader }}
+    </h6>
+  </div>
+  <div [innerHtml]="data.description | sanitizeHtml" class="text-container-light article__text">
+  </div>
+</section>
+<div class="bottom__lines"></div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

@@ -1,0 +1,48 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="news">
+  <div class="news-header">
+    <div class="news-header__breadcrumbs">
+      <a class="news-header__breadcrumbs-item" [routerLink]="['/'] | localize">{{ 'home.name' | translate }}</a>
+      <a class="news-header__breadcrumbs-item" [routerLink]="['/novosti'] | localize">{{ 'news.name' | translate }}</a>
+    </div>
+    <h1 class="news-header__h2">{{ 'news.name' | translate }}</h1>
+  </div>
+  <div class="news-container">
+    <ng-container *ngFor="let newsItem of newsBlock">
+      <a [routerLink]="['/novosti', newsItem.urlName] | localize" class="news-item">
+        <div class="news-item__img"
+          [ngStyle]="{'background-image': (newsItem.thumbnailImageUrl ? 'url(' + newsItem.thumbnailImageUrl + ')' : '') }">
+        </div>
+        <div class="news-item__sub-container">
+
+          <div class="news-item__text-wrap">
+            <h5 class="news-item__date">
+              <span>{{ newsItem.publishDate | date: 'dd.MM.yy' }}</span>
+            </h5>
+            <div class="news-item__header-wrap">
+              <short-header-text [symbolLength]="headerSymbolsAllowed" [textContent]="newsItem.header ">
+              </short-header-text>
+            </div>
+            <div class="news-item__text">
+              <app-text-ellipsis [symbolLength]="subheaderSymbolsAllowed" [textContent]="newsItem.subheader"
+                class="news-item__text-item">
+              </app-text-ellipsis>
+            </div>
+          </div>
+          <div [routerLink]="['/novosti', newsItem.urlName] | localize" class="news-item__link">
+            {{ 'news.readMore' | translate }}
+          </div>
+        </div>
+      </a>
+    </ng-container>
+
+  </div>
+
+  <a *ngIf="!nothingToLoad" (click)="loadMoreNews()" class="news-loader__link">
+    <img class="news-loader__icon" src="assets/img/icons/loading-sm.png" alt="load" title="load">
+    <span class="news-loader__icon-text">{{ 'news.viewMore' | translate }}</span>
+  </a>
+</div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

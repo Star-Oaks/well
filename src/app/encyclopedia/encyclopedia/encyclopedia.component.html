@@ -1,0 +1,46 @@
+<ngx-json-ld *ngIf="schema" [json]="schema"></ngx-json-ld>
+<div class="encyclopedia">
+  <div class="encyclopedia-header">
+    <div class="encyclopedia-header__breadcrumbs">
+      <a [routerLink]="['/'] | localize" class="encyclopedia-header__breadcrumbs-item">{{ 'home.name' | translate }}</a>
+      <a [routerLink]="['/encyclopedia'] | localize"
+        class="encyclopedia-header__breadcrumbs-item">{{ 'encyclopedia.name' | translate }}</a>
+    </div>
+
+    <h1 class="encyclopedia-header__h2">{{ 'encyclopedia.name' | translate }}</h1>
+  </div>
+  <div class="encyclopedia-container">
+    <ng-container *ngFor="let article of articlesBlock">
+      <a class="encyclopedia-item" [routerLink]="['/encyclopedia', article.urlName] | localize">
+        <div class="encyclopedia-item__img"
+          [ngStyle]="{'background-image': (article.thumbnailImageUrl ? 'url(' + article.thumbnailImageUrl + ')' : '') }">
+        </div>
+        <div class="encyclopedia-item__sub-container">
+          <div class="encyclopedia-item__wrap encyclopedia-item__text-wrap">
+            <div class="encyclopedia-item__header-wrap">
+              <short-header-text [symbolLength]="headerSymbolsAllowed" [textContent]="article.header"
+                class="encyclopedia-item__header">
+              </short-header-text>
+            </div>
+            <div class="encyclopedia-item__text">
+              <app-text-ellipsis [symbolLength]="subheaderSymbolsAllowed" [textContent]="article.subheader"
+                class="encyclopedia-item__text">
+              </app-text-ellipsis>
+            </div>
+          </div>
+          <div class="encyclopedia-item__link">
+            {{ 'encyclopedia.readMore' | translate }}
+          </div>
+        </div>
+      </a>
+    </ng-container>
+  </div>
+  <a *ngIf="!nothingToLoad" class="encyclopedia-loader__link" (click)="loadMoreNews()">
+    <img class="encyclopedia-loader__icon" src="assets/img/icons/loading-sm.png" alt="load" title="load">
+    <span class="encyclopedia-loader__icon-text">{{ 'encyclopedia.viewMore' | translate }}</span>
+  </a>
+</div>
+
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water *ngIf="seoText" [data]="seoText"></app-delivery-water>

@@ -1,0 +1,45 @@
+<div class="banner" [defaultImage]="'assets/img/default_dark.jpg'" [lazyLoad]="data.bannerImageUrl" [errorImage]="data.bannerImageUrl">
+  <div class="banner__info">
+    <h5 class="banner__h5">{{data.header}}</h5>
+    <h1 class="banner__h2">{{data.subHeader}}</h1>
+    <!-- <form method="POST" action="https://www.liqpay.ua/api/3/checkout" accept-charset="utf-8">
+      <input type="hidden" name="data"
+        value="eyJwdWJsaWNfa2V5IjoiaTkyMzc3MDIxMTQ4IiwidmVyc2lvbiI6IjMiLCJhY3Rpb24iOiJwYXkiLCJhbW91bnQiOiIxNjUuMyIsImN1cnJlbmN5IjoiVUFIIiwiZGVzY3JpcHRpb24iOiLQn9C70LDRgtGW0LYg0LTQu9GPINCd0LXQsdC10YHQvdCwINCa0YDQuNC90LjRhtGPIiwib3JkZXJfaWQiOiJjYTJiZTFlOC1mYzAzLTQyYzQtYThiNy04YmU2Mjk3ZmNhNzciLCJzYW5kYm94IjoiMSIsInNlcnZlcl91cmwiOiJodHRwczovL2tyb2t1cy1zdGFnaW5nLWFyZWEueHl6L2FwaS9wYXltZW50In0=" />
+      <input type="hidden" name="signature" value="Sm5wNDJRQlhEbXp5RUV3L3IxUno5bUczNkpZPQ==" />
+      <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png" />
+      <input type="submit" value="BUTTON" />
+    </form> -->
+    <a class="banner__btn" gtagEvent trackOn="click" action="click" category="water-order-main"
+      [params]="{ event_label: 'Заказать воду (главная)' }" [routerLink]="['/catalog', 'voda'] | localize">
+      <span class="banner__btn-text">{{ 'home.toOrder' | translate }}</span>
+    </a>
+  </div>
+  <div class="banner__bottom">
+    <a class="banner__shares" [routerLink]="['/akcii'] | localize">
+      <div class="banner__shares-icon">
+        <svg height="512pt" viewBox="-32 0 512 512.00139" width="512pt" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m437.535156 113.511719h-60.292968c13.039062-11.847657 21.953124-28.125 24.171874-46.632813 1.238282-10.304687.195313-19.933594-3.015624-27.84375-11.597657-28.578125-49.078126-44.859375-85.328126-37.074218-.292968.0625-.582031.140624-.871093.226562-21.425781 6.660156-44.445313 28.652344-68.421875 65.363281-8.164063 12.496094-15 24.507813-19.992188 33.816407-4.992187-9.308594-11.828125-21.320313-19.988281-33.816407-23.976563-36.710937-47-58.703125-68.421875-65.363281-.289062-.085938-.578125-.164062-.871094-.226562-18.378906-3.949219-37.535156-1.8906255-53.941406 5.789062-5.019531 2.351562-7.183594 8.328125-4.832031 13.347656 2.351562 5.023438 8.324219 7.1875 13.347656 4.835938 12.140625-5.6875 26.96875-7.296875 40.753906-4.4375 29.070313 9.433594 61.3125 60.890625 77.730469 92.015625h-85.140625c-22.242187 0-42.542969-12.835938-51.714844-32.707031-2.324219-5.03125-8.285156-7.230469-13.320312-4.90625-5.035157 2.324218-7.230469 8.289062-4.90625 13.324218 4.316406 9.355469 10.449219 17.5625 17.871093 24.289063h-60.3125c-5.542968 0-10.039062 4.496093-10.039062 10.039062v103.308594c0 5.546875 4.496094 10.039063 10.039062 10.039063h11.117188v265.0625c0 5.546874 4.496094 10.039062 10.039062 10.039062h385.179688c5.546875 0 10.039062-4.492188 10.039062-10.039062v-265.0625h11.121094c5.542969 0 10.039063-4.492188 10.039063-10.039063v-103.308594c0-5.542969-4.496094-10.039062-10.039063-10.039062zm-119.796875-92.015625c26.425781-5.484375 54.191407 5.710937 62.054688 25.085937 1.9375 4.773438 2.519531 10.964844 1.6875 17.90625-3.355469 27.949219-27.570313 49.023438-56.328125 49.023438h-85.144532c16.398438-31.125 48.625-82.566407 77.730469-92.015625zm-297.660156 195.324218v-83.230468h122.253906v83.230468zm245.324219 275.101563h-224.167969v-255.023437h120.859375v184.75c0 5.546874 4.492188 10.039062 10.039062 10.039062 5.542969 0 10.039063-4.492188 10.039063-10.039062v-184.75h83.230469zm19.761718-275.101563h-122.753906v-83.230468h122.753906zm121.175782 275.101563h-120.859375v-255.023437h120.855469v255.023437zm21.15625-275.101563h-122.253906v-83.230468h122.253906zm0 0" />
+          <path
+            d="m182.175781 461.796875c0 5.566406-4.511719 10.078125-10.078125 10.078125s-10.078125-4.511719-10.078125-10.078125 4.511719-10.078125 10.078125-10.078125 10.078125 4.511719 10.078125 10.078125zm0 0" />
+          <path
+            d="m68.617188 45.757812c0 5.566407-4.511719 10.078126-10.078126 10.078126-5.566406 0-10.078124-4.511719-10.078124-10.078126 0-5.566406 4.511718-10.078124 10.078124-10.078124 5.566407 0 10.078126 4.511718 10.078126 10.078124zm0 0" />
+        </svg>
+      </div>
+      <span>{{ 'home.shares' | translate }}</span>
+    </a>
+    <div *ngIf="phone" [@phoneState]="statePhone" class="banner__phone" (mouseenter)="onPhoneEnter()"
+      (mouseleave)="onPhoneLeave()">
+      <a class="banner__phone-link" [href]="'tel:' + phone.number">{{ phone.number }}</a>
+      <div class="banner__phone-btn" (touchend)="changeState()">
+        <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px" y="0px" viewBox="0 0 18 18" style="enable-background:new 0 0 18 18;" xml:space="preserve">
+          <path d="M17.6,14.2l-2.8-2.8c-0.6-0.6-1.5-0.5-2,0l-1.4,1.4c-0.1,0-0.2-0.1-0.3-0.2c-0.9-0.5-2.1-1.2-3.4-2.4C6.4,9,5.8,7.8,5.3,6.9
+         C5.2,6.8,5.2,6.7,5.1,6.6l0.9-0.9l0.5-0.5c0.6-0.6,0.6-1.5,0-2L3.8,0.4c-0.6-0.6-1.5-0.5-2,0L1,1.2l0,0C0.7,1.6,0.5,2,0.3,2.4
+         C0.2,2.8,0.1,3.2,0.1,3.6c-0.4,3.1,1,5.8,4.8,9.6c5.2,5.2,9.4,4.8,9.6,4.8c0.4,0,0.8-0.1,1.2-0.3c0.4-0.2,0.8-0.4,1.1-0.6l0,0
+         l0.8-0.8C18.1,15.7,18.1,14.8,17.6,14.2z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

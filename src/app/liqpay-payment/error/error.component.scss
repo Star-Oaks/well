@@ -1,0 +1,127 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+.after-payment {
+    &__wrap {
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        display: flex;
+        max-height: 100vh;
+        height: 100vh;
+        width: 100%;
+    }
+    &__img {
+        display: flex;
+        position: relative;
+        width: 100%;
+        padding-bottom: 0.5rem;
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+    &__img-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 0;
+        width: 10rem;
+    }
+    &__btns {
+        display: flex;
+        margin: 0 auto;
+    }
+    &__btn {
+        background-color: $red-1;
+        border: none;
+        width: 100%;
+        display: flex;
+        height: 4.4rem;
+        min-height: 4.4rem;
+        width: 27.5rem;
+        border-radius: 2.1rem;
+        justify-content: center;
+        align-items: center;
+        margin: 0 3rem;
+        cursor: pointer;
+        &:active {
+            background-color: $dark-blue-text-1;
+        }
+        &-text {
+            display: flex;
+            color: $white-1;
+            font-family: $regular;
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.6px;
+        }
+    }
+    &__text {
+        color: $dark-blue-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding-bottom: 4rem;
+        max-width: 85%;
+        margin: 0 auto;
+        line-height: 20px;
+        padding-top: 2.5rem;
+        padding-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .after-payment {
+        &__wrap {
+            padding-top: 9.4rem;
+            padding-bottom: 0;
+        }
+        &__text {
+            max-width: 41.5rem;
+            padding-top: 0;
+        }
+        &__content {
+            padding-top: 15rem;
+            padding-bottom: 15rem;
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .after-payment {
+        &__wrap {
+            padding-top: 9.7rem;
+            max-width: 70vw;
+            width: 97rem;
+        }
+        &__content {
+            padding-top: 8%;
+            padding-bottom: 10%;
+        }
+        &__btn {
+            &:hover {
+                background-color: $dark-blue-text-1;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .after-payment {
+        &__content {
+            padding-top: 15%;
+            padding-bottom: 25%;
+        }
+    }
+}

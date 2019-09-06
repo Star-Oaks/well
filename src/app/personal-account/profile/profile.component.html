@@ -1,0 +1,101 @@
+<div class="profile">
+  <div class="profile__data" *ngIf="userForm">
+    <h4 class="profile__h4">{{'personal.mainData' | translate }}</h4>
+    <form class="profile__form" [formGroup]="userForm" (ngSubmit)="saveUserData()">
+      <div class="profile__field">
+        <label class="profile__label" for="name">{{'personal.yourFName' | translate }}</label>
+        <div class="profile__input" [class.error]="userForm.controls.fName.invalid && userForm.controls.fName.touched">
+          <input id="name" type="text" [attr.minlength]="2" [attr.maxlength]="20"
+            [placeholder]="'personal.fName' | translate" formControlName="fName">
+        </div>
+      </div>
+      <div class="profile__field">
+        <label class="profile__label" for="surname">{{'personal.yourLName' | translate }}</label>
+        <div class="profile__input" [class.error]="userForm.controls.lName.invalid && userForm.controls.lName.touched">
+          <input id="surname" [attr.minlength]="2" [attr.maxlength]="20" type="text"
+            [placeholder]="'personal.yourLName' | translate " formControlName="lName">
+        </div>
+      </div>
+      <div class="profile__field">
+        <label class="profile__label" for="email">E-mail</label>
+        <div class="profile__input" [class.error]="userForm.controls.email.invalid && userForm.controls.email.touched">
+          <input id="email" type="text" placeholder="E-mail" formControlName="email">
+        </div>
+      </div>
+      <div class="profile__save">
+        <ng-container *ngIf="!visiblityState; else successUserData">
+          <button type="submit" class="profile__save-btn profile__btn" *ngIf="!savingData">
+            {{'personal.save' | translate }}
+          </button>
+          <div class="profile__checking" *ngIf="savingData">
+            {{'personal.saving' | translate }}
+            <div><span>.</span><span>.</span><span>.</span></div>
+          </div>
+        </ng-container>
+        <ng-template #successUserData>
+          <div class="profile__checking text-save">
+            {{'personal.successSaving' | translate }}
+          </div>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+  <div class="profile__pass">
+    <h4 class="profile__h4">{{'personal.changePassLogin' | translate }}</h4>
+    <form class="profile__form" [formGroup]="passwordForm">
+      <div class="profile__field">
+        <label class="profile__label" for="old-pass">{{'personal.oldPass' | translate }}</label>
+        <div class="profile__input"
+          [class.error]="passwordForm.controls.oldPass.invalid && passwordForm.controls.oldPass.touched">
+          <input type="password" autocomplete="off" formControlName="oldPass" id="old-pass">
+        </div>
+      </div>
+      <div class="profile__input-error profile__mess">
+        <span
+          *ngIf="passwordForm.controls['newPass'].errors && passwordForm.controls['newPass'].touched">{{ 'auth.passMess' | translate }}</span>
+      </div>
+      <div class="profile__field">
+        <label class="profile__label" for="new-pass">{{'personal.newPass' | translate }}</label>
+        <div class="profile__input"
+          [class.error]="passwordForm.controls.newPass.invalid && passwordForm.controls.newPass.touched">
+          <input type="password" autocomplete="new-password" formControlName="newPass" [attr.maxlength]="20"
+            id="new-pass">
+        </div>
+      </div>
+      <div class="profile__input-error profile__mess">
+        <span
+          *ngIf="passwordForm.controls['newPassRepeat'].errors && passwordForm.controls['newPassRepeat'].touched">{{ 'auth.uncorrectRepeat' | translate }}</span>
+      </div>
+      <div class="profile__field">
+        <label class="profile__label" for="repeat-pass">{{'personal.newPassRepeat' | translate }}</label>
+        <div class="profile__input"
+          [class.error]="passwordForm.controls.newPassRepeat.invalid && passwordForm.controls.newPassRepeat.touched">
+          <input type="password" autocomplete="new-password" formControlName="newPassRepeat" id="repeat-pass">
+        </div>
+      </div>
+      <div class="profile__save">
+        <ng-container *ngIf="!visiblityPassState; else successUserPass">
+          <button *ngIf="!savingPass" class="profile__save-btn profile__btn"
+            (click)="changePassword()">{{'personal.changePass' | translate }}</button>
+          <div class="profile__checking" *ngIf="savingPass">
+            {{'personal.saving' | translate }}
+            <div><span>.</span><span>.</span><span>.</span></div>
+          </div>
+        </ng-container>
+        <ng-template #successUserPass>
+          <div class="profile__checking text-save">
+            {{'personal.successSaving' | translate }}
+          </div>
+        </ng-template>
+      </div>
+      <!-- <div class="profile__save">
+        <button class="profile__save-btn profile__btn"
+          (click)="changePassword()">{{'personal.changePass' | translate }}</button>
+      </div>
+      <div class="profile__field">
+        <span class="text-save"
+          [@visibilityChanged]="visiblityPassState">{{'personal.successSaving' | translate }}</span>
+      </div> -->
+    </form>
+  </div>
+</div>

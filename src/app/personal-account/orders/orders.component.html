@@ -1,0 +1,73 @@
+<div class="orders">
+  <div class="orders__wrap" *ngIf="paginateOrders.length">
+    <div class="orders__list">
+      <div class="orders__item" *ngFor="let item of paginateOrders; let i = index" dropdown>
+        <div class="orders__dropdown" *ngIf="item.productOrders.length != 0">
+          <div class="orders__date"><span>{{item.orderDate | date: 'd.MM.yy'}}</span></div>
+          <div class="orders__wrapper" dropdown-not-closable-zone>
+            <div class="orders__product" *ngFor="let product of item.productOrders; let k = index">
+              <div class="orders__image">
+                <img class="orders__img" [src]="product?.smallImageUrl" [alt]="product.name" [title]="product.name" />
+              </div>
+              <div class="orders__info">
+                <div class="order__describe">
+                  <div class="orders__name"><span>{{product.name}}</span></div>
+                </div>
+                <div class="orders__count"><span>{{ 'personal.count' | translate }}:
+                  </span><span>{{product.productCount}}</span></div>
+                <div class="orders__price">
+                  <span>{{product.productCount * product.productStandartPrice}}</span><span>{{ 'order.currency' | translate }}</span></div>
+              </div>
+              <div class="orders__update">
+                <div class="update__wrapper">
+                  <button class="orders__update-btn" (click)="addToCart(product, item.id, $event)">
+                    <span *ngIf="!product.adding">{{ 'personal.addToCart' | translate }}</span>
+                    <span *ngIf="product.adding">{{ 'shop.successAdd' | translate }}</span>
+                  </button>
+                  <button class="orders__update-btn"
+                    (click)="deleteProduct(product, item.id)">{{ 'personal.delete' | translate }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="orders__buttons">
+            <button class="orders__delete-btn"
+              (click)="deleteOrder(item.id)">{{ 'personal.deleteOrder' | translate }}</button>
+            <button class="orders__re-order-btn" (click)="repeatOrder(item.id)">
+              <span *ngIf="!item.adding">{{ 'personal.reOrder' | translate }}</span>
+              <span *ngIf="item.adding">{{ 'personal.successOrder' | translate }}</span>
+            </button>
+            <div class="orders__collapse" dropdown-open>
+              <span>{{ 'personal.moreDetails' | translate }}</span>
+              <span>{{ 'personal.lessDetails' | translate }}</span>
+            </div>
+          </div>
+          <div class="orders__total">
+            <span>{{ 'personal.total' | translate }}: </span>
+            <span>{{item.totalPrice}}</span>
+            <span> {{ 'order.currency' | translate }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="order__lines">
+        <div class="order__lines-first"></div>
+        <div class="order__lines-second"></div>
+        <!-- <div class="order__lines-three"></div> -->
+      </div>
+    </div>
+    <div class="link__wrap" *ngIf="!endList">
+      <a class="orders__link" (click)="loadMore()">
+        <img class="orders__icon" src="assets/img/icons/loading-sm.png" alt="load" title="load">
+        <span class="orders__icon-text">{{ 'personal.previousOrders' | translate }}</span>
+      </a>
+    </div>
+  </div>
+  <div class="orders__wrap" *ngIf="!paginateOrders.length">
+    <div class="empty__wrap">
+      <h2 class="empty__h2">{{ 'personal.emptyOrder' | translate }}</h2>
+      <a class="empty__link" [routerLink]="['/catalog', 'voda'] | localize">
+        {{ 'personal.orderWater' | translate }}
+      </a>
+    </div>
+  </div>
+</div>

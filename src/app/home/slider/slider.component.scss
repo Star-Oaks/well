@@ -1,0 +1,189 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "base.scss";
+.slider {
+    padding: 2.1rem 0 0;
+    &__wrap {
+        position: relative;
+        overflow: hidden;
+    }
+    &__item {
+        display: block;
+        width: 100vw;
+        height: 84vw;
+        max-height: 27rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: $under-mask;
+            background-image: $img-mask;
+            opacity: 0.3;
+            content: '';
+        }
+    }
+    &__text {
+        position: relative;
+        z-index: 2;
+        padding: 0 2rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &__h5 {
+        color: $lighten-text-1;
+        font-family: $bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 2.4px;
+        margin: 2rem 0;
+    }
+    &__h4 {
+        color: $body-color-bg;
+        font-family: $extrabold;
+        font-size: 3rem;
+        font-weight: 400;
+        line-height: 40px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 1rem;
+        max-width: 23.2rem;
+    }
+    .slick-slider {
+        width: 100vw;
+        overflow: hidden;
+        position: static;
+    }
+}
+
+
+
+::ng-deep ngx-slick-carousel.home-slider {
+
+    .slick-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem 0;
+    }
+    li {
+        padding: 0.3rem;
+        margin: 0 0.2rem;
+    }
+    button {
+        color: transparent;
+        border: none;
+        background: $dark-blue-bg-05;
+        border-radius: 50%;
+        padding: 0;
+        width: 1.1rem;
+        height: 1.1rem;
+        cursor: pointer;
+    }
+    .slick-active button {
+        background: $dark-blue-bg-1;
+    }
+    @media screen and (min-width: 768px) {
+        button {
+            background: $white-05
+        }
+        .slick-active button{
+            background: $white-1;
+        }
+        .slick-list {
+            position: relative;
+        }
+        .slick-arrow {
+            top: 50%;
+            z-index: 2;
+            padding: .5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            height: 30%;
+            transform: translateY(-50%);
+            z-index: 2;
+            padding: 0 0.5rem;
+            width: 4rem;
+            cursor: pointer;
+            svg {
+                fill: $white-05;
+                width:100%;
+                height: 100%;
+            }
+            &.slick-prev {
+                left: 1.8rem;
+            }
+            &.slick-next {
+                right: 1.8rem;
+            }
+            &:active {
+                svg {
+                    fill: $white-1;
+                }
+            }
+        }
+        .slick-dots {
+            position: absolute;
+            left: 10rem;
+            bottom: 2.4rem;
+        }
+    }
+    @media screen and (min-width: 1200px){
+        .slick-arrow:hover {
+            svg {
+                fill: $white-1;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .slider {
+        padding-top: 2.9rem;
+        &__item {
+            max-height: 38rem;
+        }
+        &__text {
+            padding: 0 10.5rem 2rem;
+        }
+        &__h5 {
+            margin: 1rem 0;
+        }
+        &__h4 {
+            max-width: 44.4rem;
+            font-size: 4rem;
+     
+            line-height: 60px;
+            letter-spacing: 2px;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px){
+
+    .slider {
+        padding-top: 3.5rem;
+        &__item {
+            max-height: 38rem;
+            max-width: 100%;
+            width: calc(100vw - 23vw);
+        }
+        &__h5, &__h4 {
+            cursor: inherit;
+        }
+        .slick-slider {
+            width: calc(100vw - 23vw);
+        }
+    }
+}

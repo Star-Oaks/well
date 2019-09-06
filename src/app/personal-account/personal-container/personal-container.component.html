@@ -1,0 +1,28 @@
+<div class="personal">
+  <div class="personal__wrap">
+    <div class="personal__header">
+      <div class="personal__breadcrumbs">
+        <a class="personal__breadcrumbs-item" [routerLink]="['/'] | localize">{{ 'home.name' | translate }}</a>
+        <a class="personal__breadcrumbs-item" [routerLink]="['/', 'kabinet'] | localize">{{ 'personal.name' | translate }}</a>
+      </div>
+      <h2 class="personal__h2">{{ 'personal.name' | translate }}</h2>
+    </div>
+  </div>
+  <div class="personal__tabs">
+    <ngx-tabset class="personal__tabset">
+      <ngx-tab  class="persona__tab" [tabTitle]=" 'personal.profile' | translate">
+        <app-profile *ngIf="userInfo" [user]="userInfo" ></app-profile>
+      </ngx-tab>
+      <ngx-tab class="personal__tab"  [tabTitle]="'personal.myOrders' | translate">
+        <app-orders *ngIf="userOrders" [orders]="userOrders"></app-orders>
+      </ngx-tab>
+      <ngx-tab class="personal__tab" [tabTitle]="'personal.myAddresses' | translate">
+        <app-addresses *ngIf="userAddresses && userInfo" [addresses]="userAddresses" [isUUser]="userInfo.isUUser"></app-addresses>
+      </ngx-tab>
+    </ngx-tabset>
+  </div>
+</div>
+<div class="bottom__lines"></div>
+<app-our-clients></app-our-clients>
+<app-subscribe></app-subscribe>
+<app-delivery-water></app-delivery-water>
